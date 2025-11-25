@@ -84,7 +84,7 @@ void stackRemove(Stack *s){
 }
 
 int main(){
-    Stack *s = stackCreate(2, sizeof(int));//Initilizing stack with size 10;
+    Stack *s = stackCreate(2, sizeof(int));//Initilizing stack with size 2;
     int number = 100;
     for(int i = 0; i < 64; i++) stackPush(s, &number);
 
