@@ -56,8 +56,8 @@ void stackPush(Stack *s, void *element){
 */
 void stackPop(Stack *s, void *element){
     if(stackEmpty(s)){
-        printf("Stack is empty");
-        return;
+        printf("Error : Stack is empty");
+        exit(1);
     }
     memcpy(element, (char*)s->stack + s->top * s->elementSize, s->elementSize);
     s->top--;
@@ -71,8 +71,8 @@ void stackPop(Stack *s, void *element){
 */
 void stackPeek(Stack *s, void *element){
     if(stackEmpty(s)){
-        printf("Stack is empty");
-        return;
+        printf("Error : Stack is empty");
+        exit(1);
     }
     memcpy(element, (char*)s->stack + s->top * s->elementSize, s->elementSize);
 }

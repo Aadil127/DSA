@@ -30,6 +30,11 @@ void arrayAppend(Array *a, void *element){
     a->length++;
 }
 
+//Returns 1 if given array is empty else 0
+int arrayEmpty(Array *a){
+    return a->length == 0;
+}
+
 //Inserts the element at given index in array
 void arrayInsert(Array *a, void *element, int index){
     if(a->size == a->length){
@@ -54,6 +59,21 @@ void arrayInsert(Array *a, void *element, int index){
     );
 
     a->length++;
+}
+
+void arrayDeleteElement(Array *a, int index){
+    if(arrayEmpty(a)){
+        printf("Error : Array is empty.");
+        exit(1);
+    }
+    //shift all elements to left by 1 index
+    memmove(
+        (char *)a->array + index * a->elementSize,
+        (char *)a->array + (index + 1) * a->elementSize,
+        (a->length - index) * a->elementSize
+    );
+
+    a->length--;
 }
 
 //Frees the memory of an array
@@ -82,5 +102,18 @@ int main(){
     printf("Number test. : %d\n", numberptr2[0]);
 
     arrayRemove(a);
+
+    Array *a1 = arrayCreate(10, sizeof(int));
+    number = 100;
+    for(int i = 0; i < 10; i++){
+        arrayAppend(a1, &number);
+        number += 100;
+    }
+    arrayDeleteElement(a1, 0);
+    numberptr2 = (int *)(a1->array);
+    printf("Number A1: %d\n", *numberptr2);
+
+    arrayRemove(a1);
+
     return 0;
 }
