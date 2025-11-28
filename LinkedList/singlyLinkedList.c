@@ -38,7 +38,7 @@ void listAppend(List *l, void *element){
 
 // Adds element at given index
 void listInsert(List *l, void *element, int index){
-    if(index > l->length - 1){
+    if(index > l->length){
         printf("can not access index of side of list.");
         return;
     }
@@ -56,15 +56,6 @@ void listInsert(List *l, void *element, int index){
             //if list is empty
             l->head = listNodeCreate(l, element);
         }
-    }
-    // Adding element at the end of a list
-    else if(index == -1){
-
-        Node *currentNode = l->head;
-        while (currentNode->next){
-            currentNode = currentNode->next;
-        }
-        currentNode->next = listNodeCreate(l, element);
     }
     else{
         //For adding element in the middle of a list
@@ -112,7 +103,7 @@ int main() {
         number += 100;
     }
     number = 111;
-    listInsert(l, &number, 0);
+    listInsert(l, &number, 10);
     listPrint(l);
     return 0;
 }
