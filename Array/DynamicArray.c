@@ -1,17 +1,10 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-
-/*
-* Dynamic array
-*/
-typedef struct {
-    void *array;
-    size_t elementSize, size, length;
-}Array;
+#include "dynamicArray.h"
 
 //Creates array of given size, datatype  and returns pointer of the array
-Array *arrayCreate(int size, size_t elementSize){
+Array *arrayCreate(size_t size, size_t elementSize){
     Array *a = malloc(sizeof(Array));
     a->length = 0;
     a->size = size;

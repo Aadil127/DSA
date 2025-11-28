@@ -12,7 +12,7 @@ typedef struct {
 }Queue;
 
 //Creates queue of given size, datatype  and returns pointer of the queue
-Queue *queueCreate(int size, size_t elementSize){
+Queue *queueCreate(size_t size, size_t elementSize){
     Queue *q = malloc(sizeof(Queue));
     q->front = 0;
     q->size = size;
