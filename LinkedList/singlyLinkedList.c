@@ -4,7 +4,7 @@
 #include"singlyLinkedList.h"
 
 // Creates empty list for given data type and returns pointer of the list
-List *listCreate(size_t elementSize) {
+List *listCreate(size_t elementSize){
     List *l = calloc(1, sizeof(List));
     l->head = calloc(1, sizeof(Node));
     l->length = 0;
@@ -75,27 +75,64 @@ void listInsert(List *l, void *element, int index){
     l->length++;
 }
 
-int listLen(List *l) {//Not really need can directly access it.
+void listDeleteElement(List *l, int index){
+    if(index == 0){
+        // Removes old head node and makes pointer of the list point to next node
+        Node *oldHead = l->head;
+        l->head = l->head->next;
+        free(oldHead->element);
+        free(oldHead);
+    }
+    else if(index == l->length - 1){
+        Node *currentNode = l->head;
+        int currentIndex = 0;
+        while (currentNode->next && currentIndex < index - 1){
+            currentNode = currentNode->next;
+            currentIndex++;
+        }
+        free(currentNode->next->element);
+        free(currentNode->next);
+        currentNode->next = NULL;
+    }
+    else{
+        Node *node = l->head;
+        int currentIndex = 0;
+        while (node->next){
+            if(currentIndex == index - 1) break;
+            node = node->next;
+            currentIndex++;
+        }
+        Node *tempNode = node->next;
+        node->next = tempNode->next;
+        free(tempNode->element);
+        free(tempNode);
+    }
+    l->length--;
+}
+
+int listLen(List *l){//Not really need can directly access it.
     return l->length;
 }
 
-int listEmpty(List *l) {
+int listEmpty(List *l){
     return l->length == 0;
 }
 
 
 
-void listPrint(List *l) {
+void listPrint(List *l){
     Node *n = l->head;
+    int index = 0;
     while (n->next){
-        printf("Value %d\n", *(int *)n->element);
+        printf("index : %d Value %d\n", index, *(int *)n->element);
         n = n->next;
+        index++;
     }
-    printf("Value %d\n", *(int *)n->element);
+    printf("index : %d Value %d\n", index, *(int *)n->element);
 }
 
 
-int main() {
+int main(){
     List *l = listCreate(sizeof(int));
     int number = 100;
     for(int i = 0; i < 10; i++){
@@ -103,7 +140,10 @@ int main() {
         number += 100;
     }
     number = 111;
-    listInsert(l, &number, 10);
+    listInsert(l, &number, 2);
+    listPrint(l);
+    printf("After deleting element.\n");
+    listDeleteElement(l, 10);
     listPrint(l);
     return 0;
 }
