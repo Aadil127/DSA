@@ -29,4 +29,6 @@ int listLen(List *l);
 
 int listEmpty(List *l);
 
+void dDListTransverseFd(List *l, void *element);
+
 #endif

@@ -39,7 +39,7 @@ void listAppend(List *l, void *element){
 // Adds element at given index
 void listInsert(List *l, void *element, int index){
     if(index > l->length){
-        printf("can not access index of side of list.");
+        printf("\nCan not access index that is outside of a list\n");
         return;
     }
     // Inserting element in front of a list
@@ -75,6 +75,7 @@ void listInsert(List *l, void *element, int index){
     l->length++;
 }
 
+// Removes element of a list at given index
 void listDeleteElement(List *l, int index){
     if(index == 0){
         // Removes old head node and makes pointer of the list point to next node
@@ -110,12 +111,31 @@ void listDeleteElement(List *l, int index){
     l->length--;
 }
 
+// Returns length of given list
 int listLen(List *l){//Not really need can directly access it.
     return l->length;
 }
 
+// Returns 1 if list in empty else 0
 int listEmpty(List *l){
     return l->length == 0;
+}
+
+// Moves to next node in each function call starting from head and retruns element of each node
+void dDListTransverseFd(List *l, void *element){
+    if(listEmpty(l)){
+        printf("List in empty.");
+        exit(1);
+    }
+    static Node *n = NULL;
+    if(n == NULL){
+        n = malloc(sizeof(Node));
+        n = l->head;
+    }
+    else{
+        n = n->next;
+    }
+    memcpy(element, n->element, l->elementSize);
 }
 
 
