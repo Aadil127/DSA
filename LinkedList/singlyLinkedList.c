@@ -138,6 +138,17 @@ void dDListTransverseFd(List *l, void *element){
     memcpy(element, n->element, l->elementSize);
 }
 
+void listRemove(List *l){
+    Node *n = l->head;
+    Node *oldNode = n;
+    while (n->next){
+        n = n->next;
+        free(oldNode->element);
+        free(oldNode);
+        oldNode = n;
+    }
+}
+
 
 
 void listPrint(List *l){

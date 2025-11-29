@@ -3,7 +3,7 @@
 #include<string.h>
 
 #define HASH_MULTIPLIER 31
-#define HASH_TABLE_SIZE 2
+#define HASH_TABLE_SIZE 4999
 
 
 typedef struct hashKV{
@@ -29,12 +29,26 @@ Hash *hashCreate(size_t size, size_t valueSize){
 
 //Frees the memory of a hashtable
 void hashRemove(Hash *h){
-    hashKV *hkv = (hashKV *)h->hash;
+    hashKV *hkvLinkedList = (hashKV *)h->hash;
     for(int i = 0; i < h->size; i++){
-        // printf("\n%d\n",*(int *)((hkv + i)->value));
-        free(hkv + i);
+        hashKV *node = hkvLinkedList[i].next;
+        hashKV *temp;
+
+        while (node){
+            temp = node->next;
+            if(node->value){
+                free(node->value);
+            }
+            if(node->key){
+                free(node->key);
+            }
+            free(node);
+            node = temp;
+        }
+        if(hkvLinkedList[i].value) free(hkvLinkedList[i].value);
+        if(hkvLinkedList[i].key) free(hkvLinkedList[i].key);
     }
-    free(h->hash);
+    free(hkvLinkedList);
     free(h);
 }
 
@@ -134,33 +148,14 @@ int hashSearch(Hash *h, char *key, void *value){
 
 
 int main(){
-    Hash *h = hashCreate(HASH_TABLE_SIZE, sizeof(int)); 
-
     char pet[][10] = {"cat", "dog", "parrot", "sparrow", "hamster", "horse", "goat"};
-    int number = 10;
-    hashInsert(h, pet[0], &number);
 
-    number = 20;
-    hashInsert(h, pet[1], &number);
-    hashKV *hkv = (hashKV *)h->hash;
+    Hash *h1 = hashCreate(HASH_TABLE_SIZE, sizeof(int));
+    for(int i = 0; i < 20; i++){
+        hashInsert(h1, pet[i % 7], &i);
+    }
 
-    // number = *(int *)hkv[0].value;
-    // printf("%d", number);
-
-    // number = *(int *)hkv[0].next->value;
-    // printf("%d", number);
-
-
-    // hashSearch(h, pet[0], &number);
-    // printf("%d",number);
-
-    hashDeleteKeyValue(h, pet[0]);
-
-    hashSearch(h,pet[1], &number);
-    printf("%d",number);
-
-
-    hashRemove(h);
+    hashRemove(h1);
 
     return 0;
 }
