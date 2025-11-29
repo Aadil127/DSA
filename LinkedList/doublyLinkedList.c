@@ -6,8 +6,8 @@
 // Creates Doubly Linked List and returns pointer of the list
 DList *dListCreate(size_t elementSize){
     DList *l = calloc(1, sizeof(DList));
-    l->head = calloc(1, sizeof(DNode));
-    l->tail = calloc(1, sizeof(DNode));
+    l->head = NULL;
+    l->tail = NULL;
     l->length = 0;
     l->elementSize = elementSize;
     return l;
@@ -118,6 +118,24 @@ void dListDeleteElement(DList *l, int index){
     l->length--;
 }
 
+// Frees memory of given list
+void dListRemove(DList *l){
+    DNode *node = l->head;
+    DNode *tempNode = node;
+    while (node){
+        tempNode = node->next;
+        free(node->element);
+        // free(node->prev);
+        free(node);
+        node = tempNode;
+    }
+    // free(l->head);
+    free(l);
+    // dListTransverseFd(NULL, NULL);
+    // dListTransverseBk(NULL, NULL);
+}
+
+
 
 // Returns length of given list
 int dListLen(DList *l){//Not really need can directly access it.
@@ -131,13 +149,13 @@ int dListEmpty(DList *l){
 
 // Moves to next node in each function call starting from head and retruns element of each node
 void dListTransverseFd(DList *l, void *element){
-    if(dListEmpty(l)){
+    if( l != NULL && dListEmpty(l)){
         printf("List in empty.");
         exit(1);
     }
+
     static DNode *n = NULL;
     if(n == NULL){
-        n = malloc(sizeof(DNode));
         n = l->head;
     }
     else{
@@ -147,14 +165,14 @@ void dListTransverseFd(DList *l, void *element){
 }
 
 // Moves to previous node in each function call starting from tail and retruns element of each node
-void dListTransverseBK(DList *l, void *element){
-    if(dListEmpty(l)){
+void dListTransverseBk(DList *l, void *element){
+    if( l != NULL && dListEmpty(l)){
         printf("List in empty.");
         exit(1);
     }
+
     static DNode *n = NULL;
     if(n == NULL){
-        n = malloc(sizeof(DNode));
         n = l->tail;
     }
     else{
@@ -206,11 +224,11 @@ int main(){
     }
     printf("\nOutput using list transverseBK.\n");
     for(int i = 0; i < 10; i++){
-        dListTransverseBK(l1, &OutNumber);
+        dListTransverseBk(l1, &OutNumber);
         printf("%d\n",OutNumber);
     }
 
-
+    dListRemove(l1);
 
     return 0;
 }

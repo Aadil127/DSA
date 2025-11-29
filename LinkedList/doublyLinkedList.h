@@ -33,6 +33,8 @@ int dListEmpty(DList *l);
 
 void dListTransverseFd(DList *l, void *element);
 
-void dListTransverseBK(DList *l, void *element);
+void dListTransverseBk(DList *l, void *element);
+
+void dListRemove(DList *l);
 
 #endif

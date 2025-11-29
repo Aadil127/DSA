@@ -6,7 +6,7 @@
 // Creates empty list for given data type and returns pointer of the list
 List *listCreate(size_t elementSize){
     List *l = calloc(1, sizeof(List));
-    l->head = calloc(1, sizeof(Node));
+    l->head = NULL;
     l->length = 0;
     l->elementSize = elementSize;
     return l;
@@ -122,7 +122,7 @@ int listEmpty(List *l){
 }
 
 // Moves to next node in each function call starting from head and retruns element of each node
-void dDListTransverseFd(List *l, void *element){
+void listTransverseFd(List *l, void *element){
     if(listEmpty(l)){
         printf("List in empty.");
         exit(1);
@@ -138,15 +138,18 @@ void dDListTransverseFd(List *l, void *element){
     memcpy(element, n->element, l->elementSize);
 }
 
+// Frees memory of given list
 void listRemove(List *l){
-    Node *n = l->head;
-    Node *oldNode = n;
-    while (n->next){
-        n = n->next;
-        free(oldNode->element);
-        free(oldNode);
-        oldNode = n;
+    Node *node = l->head;
+    Node *tempNode = node;
+    while (node){
+        tempNode = node->next;
+        free(node->element);
+        free(node);
+        node = tempNode;
     }
+    // free(l->head);
+    free(l);
 }
 
 
@@ -176,5 +179,6 @@ int main(){
     printf("After deleting element.\n");
     listDeleteElement(l, 10);
     listPrint(l);
+    listRemove(l);
     return 0;
 }
