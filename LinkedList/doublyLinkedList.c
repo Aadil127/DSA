@@ -131,7 +131,7 @@ int dListEmpty(DList *l){
 
 // Moves to next node in each function call starting from head and retruns element of each node
 void dListTransverseFd(DList *l, void *element){
-    if(DListEmpty(l)){
+    if(dListEmpty(l)){
         printf("List in empty.");
         exit(1);
     }
@@ -148,7 +148,7 @@ void dListTransverseFd(DList *l, void *element){
 
 // Moves to previous node in each function call starting from tail and retruns element of each node
 void dListTransverseBK(DList *l, void *element){
-    if(DListEmpty(l)){
+    if(dListEmpty(l)){
         printf("List in empty.");
         exit(1);
     }
@@ -192,21 +192,21 @@ int main(){
 
     printf("\nNew DList\n");
 
-    DList *l1 = dDListCreate(sizeof(int));
+    DList *l1 = dListCreate(sizeof(int));
     int number = 100;
     int OutNumber = 0;
     for(int i = 0; i < 10; i++){
-        dDListAppend(l1, &number);
+        dListAppend(l1, &number);
         number += 100;
     }
     printf("\nOutput using list transverseFD.\n");
     for(int i = 0; i < 10; i++){
-        dDListTransverseFd(l1, &OutNumber);
+        dListTransverseFd(l1, &OutNumber);
         printf("%d\n",OutNumber);
     }
     printf("\nOutput using list transverseBK.\n");
     for(int i = 0; i < 10; i++){
-        dDListTransverseBK(l1, &OutNumber);
+        dListTransverseBK(l1, &OutNumber);
         printf("%d\n",OutNumber);
     }
 
