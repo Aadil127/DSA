@@ -8,8 +8,8 @@
 */
 struct Queue{
     void *queue;
-    size_t elementSize, size;
-    int front, rear, length;
+    size_t elementSize, size,length;
+    int front, rear;
 };
 
 //Creates queue of given size, datatype  and returns pointer of the queue
@@ -64,34 +64,42 @@ void queueRemove(Queue *q){
     free(q);
 }
 
-int main(){
-
-    Queue *q = queueCreate(5, sizeof(int));
-    int number = 100;
-    enqueue(q, &number);
-    // 100
-    // rear = 0 front = 0
-
-    number = 200;
-    enqueue(q, &number);
-    // 100  200
-    // rear = 1 front = 0
-
-    number = 300;
-    enqueue(q, &number);
-    // 100  200  300
-    // rear = 2 front = 0
-
-
-    dequeue(q, &number);
-    printf("Number : %d\n", number);
-    // 100  200  300
-    // rear = 2 front = 1
-    
-    dequeue(q, &number);
-    printf("Number : %d\n", number);
-    // 100  200  300
-    // rear = 2 front = 2
-
-    return 0;
+size_t queueSize(Queue *q){
+    return q->size;
 }
+
+size_t queueLen(Queue *q){
+    return q->length;
+}
+
+// int main(){
+
+//     Queue *q = queueCreate(5, sizeof(int));
+//     int number = 100;
+//     enqueue(q, &number);
+//     // 100
+//     // rear = 0 front = 0
+
+//     number = 200;
+//     enqueue(q, &number);
+//     // 100  200
+//     // rear = 1 front = 0
+
+//     number = 300;
+//     enqueue(q, &number);
+//     // 100  200  300
+//     // rear = 2 front = 0
+
+
+//     dequeue(q, &number);
+//     printf("Number : %d\n", number);
+//     // 100  200  300
+//     // rear = 2 front = 1
+    
+//     dequeue(q, &number);
+//     printf("Number : %d\n", number);
+//     // 100  200  300
+//     // rear = 2 front = 2
+
+//     return 0;
+// }

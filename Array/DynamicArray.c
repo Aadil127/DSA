@@ -86,27 +86,27 @@ void arrayRemove(Array *a){
     free(a);
 }
 
-int main(){
-    int number = 100;
-    Array *a = arrayCreate(1, sizeof(int));
-    for(int i = 0; i < 10; i++){
-        arrayInsert(a, &number, 0);
-        // arrayAppend(a, &number);
-        printf("Inserted %d at index 0\n", number);
-        // arrayAppend(a, &number);
-        number++;
-    }
+// int main(){
+//     int number = 100;
+//     Array *a = arrayCreate(1, sizeof(int));
+//     for(int i = 0; i < 10; i++){
+//         arrayInsert(a, &number, 0);
+//         // arrayAppend(a, &number);
+//         printf("Inserted %d at index 0\n", number);
+//         // arrayAppend(a, &number);
+//         number++;
+//     }
 
-    printf("\nLength : %lu\n\n",a->length);
+//     printf("\nLength : %lu\n\n",a->length);
 
-    int *numberptr;
-    numberptr = (int *)a->array;
-    for(int i = 0; i < a->length; i++){
-        printf("Number : %d\n", *numberptr);
-        numberptr++;
-    }
+//     int *numberptr;
+//     numberptr = (int *)a->array;
+//     for(int i = 0; i < a->length; i++){
+//         printf("Number : %d\n", *numberptr);
+//         numberptr++;
+//     }
 
-    arrayRemove(a);
+//     arrayRemove(a);
 
-    return 0;
-}
+//     return 0;
+// }

@@ -57,7 +57,7 @@ void dListAppend(List *l, void *element){
 
 // Adds element at given index
 void dListInsert(List *l, void *element, int index){
-    if(index > l->length){
+    if((size_t)index > l->length){
         printf("\nCan not access index that is outside of a DList\n");
         return;
     }
@@ -107,7 +107,7 @@ void dListDeleteElement(List *l, int index){
         free(oldHead->element);
         free(oldHead);
     }
-    else if(index == l->length - 1){
+    else if((size_t)index == l->length - 1){
         Node *currentNode = l->head;
         int currentIndex = 0;
         while (currentNode->next && currentIndex < index - 1){
@@ -210,41 +210,41 @@ void dListPrint(List *l){
 }
 
 
-int main(){
-    // DList *l = dDListCreate(sizeof(int));
-    // int number = 100;
-    // for(int i = 0; i < 10; i++){
-    //     dDListAppend(l, &number);
-    //     number += 100;
-    // }
-    // number = 111;
-    // dDListInsert(l, &number, 2);
-    // DListPrint(l);
-    // printf("After deleting element.\n");
-    // dDListDeleteElement(l, 10);
-    // DListPrint(l);
+// int main(){
+//     // DList *l = dDListCreate(sizeof(int));
+//     // int number = 100;
+//     // for(int i = 0; i < 10; i++){
+//     //     dDListAppend(l, &number);
+//     //     number += 100;
+//     // }
+//     // number = 111;
+//     // dDListInsert(l, &number, 2);
+//     // DListPrint(l);
+//     // printf("After deleting element.\n");
+//     // dDListDeleteElement(l, 10);
+//     // DListPrint(l);
 
-    printf("\nNew DList\n");
+//     printf("\nNew DList\n");
 
-    List *l1 = dListCreate(sizeof(int));
-    int number = 100;
-    int OutNumber = 0;
-    for(int i = 0; i < 10; i++){
-        dListAppend(l1, &number);
-        number += 100;
-    }
-    printf("\nOutput using list transverseFD.\n");
-    for(int i = 0; i < 10; i++){
-        dListTransverseFd(l1, &OutNumber);
-        printf("%d\n",OutNumber);
-    }
-    printf("\nOutput using list transverseBK.\n");
-    for(int i = 0; i < 10; i++){
-        dListTransverseBk(l1, &OutNumber);
-        printf("%d\n",OutNumber);
-    }
+//     List *l1 = dListCreate(sizeof(int));
+//     int number = 100;
+//     int OutNumber = 0;
+//     for(int i = 0; i < 10; i++){
+//         dListAppend(l1, &number);
+//         number += 100;
+//     }
+//     printf("\nOutput using list transverseFD.\n");
+//     for(int i = 0; i < 10; i++){
+//         dListTransverseFd(l1, &OutNumber);
+//         printf("%d\n",OutNumber);
+//     }
+//     printf("\nOutput using list transverseBK.\n");
+//     for(int i = 0; i < 10; i++){
+//         dListTransverseBk(l1, &OutNumber);
+//         printf("%d\n",OutNumber);
+//     }
 
-    dListRemove(l1);
+//     dListRemove(l1);
 
-    return 0;
-}
+//     return 0;
+// }

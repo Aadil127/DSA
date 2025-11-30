@@ -51,7 +51,7 @@ void listAppend(List *l, void *element){
 
 // Adds element at given index
 void listInsert(List *l, void *element, int index){
-    if(index > l->length){
+    if((size_t)index > l->length){
         printf("\nCan not access index that is outside of a list\n");
         return;
     }
@@ -97,7 +97,7 @@ void listDeleteElement(List *l, int index){
         free(oldHead->element);
         free(oldHead);
     }
-    else if(index == l->length - 1){
+    else if((size_t)index == l->length - 1){
         Node *currentNode = l->head;
         int currentIndex = 0;
         while (currentNode->next && currentIndex < index - 1){
@@ -179,19 +179,19 @@ void listPrint(List *l){
 }
 
 
-int main(){
-    List *l = listCreate(sizeof(int));
-    int number = 100;
-    for(int i = 0; i < 10; i++){
-        listAppend(l, &number);
-        number += 100;
-    }
-    number = 111;
-    listInsert(l, &number, 2);
-    listPrint(l);
-    printf("After deleting element.\n");
-    listDeleteElement(l, 10);
-    listPrint(l);
-    listRemove(l);
-    return 0;
-}
+// int main(){
+//     List *l = listCreate(sizeof(int));
+//     int number = 100;
+//     for(int i = 0; i < 10; i++){
+//         listAppend(l, &number);
+//         number += 100;
+//     }
+//     number = 111;
+//     listInsert(l, &number, 2);
+//     listPrint(l);
+//     printf("After deleting element.\n");
+//     listDeleteElement(l, 10);
+//     listPrint(l);
+//     listRemove(l);
+//     return 0;
+// }

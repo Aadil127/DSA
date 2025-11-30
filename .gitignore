@@ -1,3 +1,6 @@
 *.exe
 *.txt
 *.json
+makefile
+build
+*.c

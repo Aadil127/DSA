@@ -1,6 +1,6 @@
-#ifndef __BinarySearchTree__H
-#define __BinarySearchTree__H
+// #ifndef __BinarySearchTree__H
+// #define __BinarySearchTree__H
 
-typedef Node
+// typedef Node
 
-#endif
+// #endif

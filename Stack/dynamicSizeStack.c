@@ -1,16 +1,16 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-
+#include"dynamicSizeStack.h"
 
 /*
 * Dynamic stack
 */
-typedef struct {
+struct Stack{
     void *stack;
     int top,size;
     size_t elementSize;
-}Stack;
+};
 
 //Creates stack of given size, datatype  and returns pointer of the stack
 Stack *stackCreate(int size, size_t elementSize){
@@ -83,18 +83,18 @@ void stackRemove(Stack *s){
     free(s);
 }
 
-int main(){
-    Stack *s = stackCreate(2, sizeof(int));//Initilizing stack with size 2;
-    int number = 100;
-    for(int i = 0; i < 64; i++) stackPush(s, &number);
+// int main(){
+//     Stack *s = stackCreate(2, sizeof(int));//Initilizing stack with size 2;
+//     int number = 100;
+//     for(int i = 0; i < 64; i++) stackPush(s, &number);
 
-    Stack *s1 = stackCreate(5,sizeof(char));
-    char c = 'A';
-    stackPush(s1, &c);
-    c = 'B';
-    stackPush(s1, &c);
+//     Stack *s1 = stackCreate(5,sizeof(char));
+//     char c = 'A';
+//     stackPush(s1, &c);
+//     c = 'B';
+//     stackPush(s1, &c);
 
-    stackRemove(s);
-    stackRemove(s1);
-    return 0;
-}
+//     stackRemove(s);
+//     stackRemove(s1);
+//     return 0;
+// }

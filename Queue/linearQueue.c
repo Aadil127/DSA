@@ -8,8 +8,8 @@
 */
 struct Queue{
     void *queue;
-    size_t elementSize, size;
-    int front, rear, length;
+    size_t elementSize, size, length;
+    int front, rear;
 };
 
 //Creates queue of given size, datatype  and returns pointer of the queue
@@ -37,7 +37,7 @@ int lQueueFull(Queue *q){
 
 //Adds element to the queue
 void lEnqueue(Queue *q, void *element){
-    if(queueFull(q)){
+    if(q->length == q->size){
         printf("Error : queue is full.");
         exit(1);
     }
@@ -48,7 +48,7 @@ void lEnqueue(Queue *q, void *element){
 
 //Removes element form the queue
 void lDequeue(Queue *q, void *element){
-    if(queueEmpty(q)){
+    if(q->length == 0){
         printf("Error : queue is empty.");
         exit(1);
     }
@@ -61,4 +61,12 @@ void lDequeue(Queue *q, void *element){
 void lQueueRemove(Queue *q){
     free(q->queue);
     free(q);
+}
+
+size_t lQueueSize(Queue *q){
+    return q->size;
+}
+
+size_t lQueueLen(Queue *q){
+    return q->length;
 }

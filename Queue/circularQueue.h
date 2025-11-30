@@ -19,4 +19,8 @@ void dequeue(Queue *q, void *element);
 
 void queueRemove(Queue *q);
 
+size_t queueSize(Queue *q);
+
+size_t queueLen(Queue *q);
+
 #endif

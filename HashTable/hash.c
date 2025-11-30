@@ -147,15 +147,15 @@ int hashSearch(Hash *h, char *key, void *value){
 }
 
 
-int main(){
-    char pet[][10] = {"cat", "dog", "parrot", "sparrow", "hamster", "horse", "goat"};
+// int main(){
+//     char pet[][10] = {"cat", "dog", "parrot", "sparrow", "hamster", "horse", "goat"};
 
-    Hash *h1 = hashCreate(HASH_TABLE_SIZE, sizeof(int));
-    for(int i = 0; i < 20; i++){
-        hashInsert(h1, pet[i % 7], &i);
-    }
+//     Hash *h1 = hashCreate(HASH_TABLE_SIZE, sizeof(int));
+//     for(int i = 0; i < 20; i++){
+//         hashInsert(h1, pet[i % 7], &i);
+//     }
 
-    hashRemove(h1);
+//     hashRemove(h1);
 
-    return 0;
-}
+//     return 0;
+// }
