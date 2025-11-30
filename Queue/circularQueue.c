@@ -1,15 +1,16 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include"circularQueue.h"
 
 /*
 * Circular queue
 */
-typedef struct {
+struct Queue{
     void *queue;
     size_t elementSize, size;
     int front, rear, length;
-}Queue;
+};
 
 //Creates queue of given size, datatype  and returns pointer of the queue
 Queue *queueCreate(size_t size, size_t elementSize){

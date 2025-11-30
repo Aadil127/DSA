@@ -3,9 +3,25 @@
 #include<string.h>
 #include"doublyLinkedList.h"
 
+
+struct Node{
+    void *element;
+    Node *next;
+    Node *prev;
+};
+
+/*
+* Singly Linked List
+*/
+struct List{
+    size_t length, elementSize;
+    Node *head;
+    Node *tail;
+};
+
 // Creates Doubly Linked List and returns pointer of the list
-DList *dListCreate(size_t elementSize){
-    DList *l = calloc(1, sizeof(DList));
+List *dListCreate(size_t elementSize){
+    List *l = calloc(1, sizeof(List));
     l->head = NULL;
     l->tail = NULL;
     l->length = 0;
@@ -14,33 +30,33 @@ DList *dListCreate(size_t elementSize){
 }
 
 // Creates node of the Doubly Linked List and returns pointer of that node
-DNode *dListNodeCreate(DList *l, DNode *prev, void *element){
-    DNode *newDNode = malloc(sizeof(DNode));
-    newDNode->element = malloc(l->elementSize);
-    memcpy(newDNode->element, element, l->elementSize);
-    newDNode->prev = prev;
-    newDNode->next = NULL;
-    return newDNode;
+Node *dListNodeCreate(List *l, Node *prev, void *element){
+    Node *newNode = malloc(sizeof(Node));
+    newNode->element = malloc(l->elementSize);
+    memcpy(newNode->element, element, l->elementSize);
+    newNode->prev = prev;
+    newNode->next = NULL;
+    return newNode;
 }
 
 // Adds element at the end of the DList
-void dListAppend(DList *l, void *element){
+void dListAppend(List *l, void *element){
     if(l->length == 0){
         l->head = dListNodeCreate(l, NULL, element);
     }
     else{
-        DNode *currentDNode = l->head;
-        while (currentDNode->next){
-            currentDNode = currentDNode->next;
+        Node *currentNode = l->head;
+        while (currentNode->next){
+            currentNode = currentNode->next;
         }
-        currentDNode->next = dListNodeCreate(l, currentDNode, element);
-        l->tail = currentDNode->next;
+        currentNode->next = dListNodeCreate(l, currentNode, element);
+        l->tail = currentNode->next;
     }
     l->length++;
 }
 
 // Adds element at given index
-void dListInsert(DList *l, void *element, int index){
+void dListInsert(List *l, void *element, int index){
     if(index > l->length){
         printf("\nCan not access index that is outside of a DList\n");
         return;
@@ -49,12 +65,12 @@ void dListInsert(DList *l, void *element, int index){
     if(index == 0){
 
         if(l->length > 0){
-            DNode *newDNode = malloc(sizeof(DNode));
-            newDNode->element = malloc(l->elementSize);
-            memcpy(newDNode->element, element, l->elementSize);
-            newDNode->next = l->head;
-            newDNode->prev = NULL;
-            l->head = newDNode;
+            Node *newNode = malloc(sizeof(Node));
+            newNode->element = malloc(l->elementSize);
+            memcpy(newNode->element, element, l->elementSize);
+            newNode->next = l->head;
+            newNode->prev = NULL;
+            l->head = newNode;
         }
         else{
             //if DList is empty
@@ -64,64 +80,64 @@ void dListInsert(DList *l, void *element, int index){
     else{
         //For adding element in the middle of a DList
         int currentIndex = 0;
-        DNode *currentDNode = l->head;
-        while (currentDNode->next){
+        Node *currentNode = l->head;
+        while (currentNode->next){
             if(currentIndex == index - 1) break;
-            currentDNode = currentDNode->next;
+            currentNode = currentNode->next;
             currentIndex++;
         }
-        DNode *newDNode = malloc(sizeof(DNode));
-        newDNode->element = malloc(l->elementSize);
-        memcpy(newDNode->element, element, l->elementSize);
-        newDNode->prev = currentDNode;
-        newDNode->next = currentDNode->next;
-        currentDNode->next = newDNode;
-        l->tail = newDNode;
+        Node *newNode = malloc(sizeof(Node));
+        newNode->element = malloc(l->elementSize);
+        memcpy(newNode->element, element, l->elementSize);
+        newNode->prev = currentNode;
+        newNode->next = currentNode->next;
+        currentNode->next = newNode;
+        l->tail = newNode;
     }
     l->length++;
 }
 
 
 // Removes element of a list at given index
-void dListDeleteElement(DList *l, int index){
+void dListDeleteElement(List *l, int index){
     if(index == 0){
         // Removes old head Dnode and makes pointer of the DList point to next Dnode
-        DNode *oldHead = l->head;
+        Node *oldHead = l->head;
         l->head = l->head->next;
         free(oldHead->element);
         free(oldHead);
     }
     else if(index == l->length - 1){
-        DNode *currentDNode = l->head;
+        Node *currentNode = l->head;
         int currentIndex = 0;
-        while (currentDNode->next && currentIndex < index - 1){
-            currentDNode = currentDNode->next;
+        while (currentNode->next && currentIndex < index - 1){
+            currentNode = currentNode->next;
             currentIndex++;
         }
-        free(currentDNode->next->element);
-        free(currentDNode->next);
-        currentDNode->next = NULL;
+        free(currentNode->next->element);
+        free(currentNode->next);
+        currentNode->next = NULL;
     }
     else{
-        DNode *Dnode = l->head;
+        Node *node = l->head;
         int currentIndex = 0;
-        while (Dnode->next){
+        while (node->next){
             if(currentIndex == index - 1) break;
-            Dnode = Dnode->next;
+            node = node->next;
             currentIndex++;
         }
-        DNode *tempDNode = Dnode->next;
-        Dnode->next = tempDNode->next;
-        free(tempDNode->element);
-        free(tempDNode);
+        Node *tempNode = node->next;
+        node->next = tempNode->next;
+        free(tempNode->element);
+        free(tempNode);
     }
     l->length--;
 }
 
 // Frees memory of given list
-void dListRemove(DList *l){
-    DNode *node = l->head;
-    DNode *tempNode = node;
+void dListRemove(List *l){
+    Node *node = l->head;
+    Node *tempNode = node;
     while (node){
         tempNode = node->next;
         free(node->element);
@@ -138,23 +154,23 @@ void dListRemove(DList *l){
 
 
 // Returns length of given list
-int dListLen(DList *l){//Not really need can directly access it.
+int dListLen(List *l){//Not really need can directly access it.
     return l->length;
 }
 
 // Returns 1 if list in empty else 0
-int dListEmpty(DList *l){
+int dListEmpty(List *l){
     return l->length == 0;
 }
 
 // Moves to next node in each function call starting from head and retruns element of each node
-void dListTransverseFd(DList *l, void *element){
+void dListTransverseFd(List *l, void *element){
     if( l != NULL && dListEmpty(l)){
         printf("List in empty.");
         exit(1);
     }
 
-    static DNode *n = NULL;
+    static Node *n = NULL;
     if(n == NULL){
         n = l->head;
     }
@@ -165,13 +181,13 @@ void dListTransverseFd(DList *l, void *element){
 }
 
 // Moves to previous node in each function call starting from tail and retruns element of each node
-void dListTransverseBk(DList *l, void *element){
+void dListTransverseBk(List *l, void *element){
     if( l != NULL && dListEmpty(l)){
         printf("List in empty.");
         exit(1);
     }
 
-    static DNode *n = NULL;
+    static Node *n = NULL;
     if(n == NULL){
         n = l->tail;
     }
@@ -182,8 +198,8 @@ void dListTransverseBk(DList *l, void *element){
 }
 
 
-void dListPrint(DList *l){
-    DNode *n = l->head;
+void dListPrint(List *l){
+    Node *n = l->head;
     int index = 0;
     while (n->next){
         printf("index : %d Value %d\n", index, *(int *)n->element);
@@ -210,7 +226,7 @@ int main(){
 
     printf("\nNew DList\n");
 
-    DList *l1 = dListCreate(sizeof(int));
+    List *l1 = dListCreate(sizeof(int));
     int number = 100;
     int OutNumber = 0;
     for(int i = 0; i < 10; i++){

@@ -5,15 +5,9 @@
 #include<stdlib.h>
 #include<string.h>
 
-typedef struct Node{
-    void *element;
-    struct Node *next;
-} Node;
+typedef struct Node Node;
 
-typedef struct {
-    size_t length, elementSize;
-    Node *head;
-} List;
+typedef struct List List;
 
 List *listCreate(size_t elementSize);
 

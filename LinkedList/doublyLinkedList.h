@@ -1,40 +1,32 @@
-#ifndef __doublyLinkedList__H
-#define __doublyLinkedList__H
+#ifndef __doublyLinkeList__H
+#define __doublyLinkeList__H
 
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 
-typedef struct DNode{
-    void *element;
-    struct DNode *next;
-    struct DNode *prev;
-} DNode;
+typedef struct Node Node;
 
-typedef struct {
-    size_t length, elementSize;
-    DNode *head;
-    DNode *tail;
-} DList;
+typedef struct List List;
 
-DList *dListCreate(size_t elementSize);
+List *dListCreate(size_t elementSize);
 
-DNode *dListNodeCreate(DList *l, DNode *prev, void *element);
+Node *dListNodeCreate(List *l, Node *prev, void *element);
 
-void dListAppend(DList *l, void *element);
+void dListAppend(List *l, void *element);
 
-void dListInsert(DList *l, void *element, int index);
+void dListInsert(List *l, void *element, int index);
 
-void dListDeleteElement(DList *l, int index);
+void dListDeleteElement(List *l, int index);
 
-int dListLen(DList *l);
+int dListLen(List *l);
 
-int dListEmpty(DList *l);
+int dListEmpty(List *l);
 
-void dListTransverseFd(DList *l, void *element);
+void dListTransverseFd(List *l, void *element);
 
-void dListTransverseBk(DList *l, void *element);
+void dListTransverseBk(List *l, void *element);
 
-void dListRemove(DList *l);
+void dListRemove(List *l);
 
 #endif

@@ -3,6 +3,19 @@
 #include<string.h>
 #include"singlyLinkedList.h"
 
+struct Node{
+    void *element;
+    Node *next;
+};
+
+/*
+* Singly Linked List
+*/
+struct List{
+    size_t length, elementSize;
+    Node *head;
+};
+
 // Creates empty list for given data type and returns pointer of the list
 List *listCreate(size_t elementSize){
     List *l = calloc(1, sizeof(List));

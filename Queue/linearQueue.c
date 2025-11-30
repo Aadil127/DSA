@@ -1,18 +1,19 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include"linearQueue.h"
 
 /*
 * Linear queue
 */
-typedef struct {
+struct Queue{
     void *queue;
     size_t elementSize, size;
     int front, rear, length;
-}Queue;
+};
 
 //Creates queue of given size, datatype  and returns pointer of the queue
-Queue *queueCreate(size_t size, size_t elementSize){
+Queue *lQueueCreate(size_t size, size_t elementSize){
     Queue *q = malloc(sizeof(Queue));
     q->front = 0;
     q->size = size;
@@ -25,17 +26,17 @@ Queue *queueCreate(size_t size, size_t elementSize){
 }
 
 //Returns 1 if given queue is empty else 0
-int queueEmpty(Queue *q){
+int lQueueEmpty(Queue *q){
     return q->length == 0;
 }
 
 //Returns 1 if given queue is full else 0
-int queueFull(Queue *q){
+int lQueueFull(Queue *q){
     return q->length == q->size;
 }
 
 //Adds element to the queue
-void enqueue(Queue *q, void *element){
+void lEnqueue(Queue *q, void *element){
     if(queueFull(q)){
         printf("Error : queue is full.");
         exit(1);
@@ -46,7 +47,7 @@ void enqueue(Queue *q, void *element){
 }
 
 //Removes element form the queue
-void dequeue(Queue *q, void *element){
+void lDequeue(Queue *q, void *element){
     if(queueEmpty(q)){
         printf("Error : queue is empty.");
         exit(1);
@@ -57,7 +58,7 @@ void dequeue(Queue *q, void *element){
 }
 
 //Frees the memory of a queue
-void queueRemove(Queue *q){
+void lQueueRemove(Queue *q){
     free(q->queue);
     free(q);
 }
