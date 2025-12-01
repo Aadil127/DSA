@@ -1,21 +1,22 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include"hash.h"
 
 #define HASH_MULTIPLIER 31
 #define HASH_TABLE_SIZE 4999
 
 
-typedef struct hashKV{
+struct hashKV{
     char *key;
     void *value;
-    struct hashKV *next;
-} hashKV;
+    hashKV *next;
+};
 
-typedef struct {
+struct Hash{
     void *hash;
     size_t valueSize, size;
-}Hash;
+};
 
 
 //Creates hashtable of given size, datatype of value and returns pointer of the hashtable
@@ -63,7 +64,7 @@ int hashKey(const char *key){
 }
 
 //Returns the length of string where pointer is pointing
-size_t stringPointerLength(const char *strPtr){
+size_t hashStringPointerLength(const char *strPtr){
     size_t length = 0;
     while(*strPtr){
         strPtr++;
@@ -80,7 +81,7 @@ void hashInsert(Hash *h, const char *key, void *value){
 
     if (currentHashKV->key == NULL) {
         //allocate memory for key, copy key to allocated memroy and makes pointer of key in linked list point to it
-        currentHashKV->key = malloc(stringPointerLength(key) + 1);
+        currentHashKV->key = malloc(hashStringPointerLength(key) + 1);
         strcpy(currentHashKV->key, key);
 
         //allocate memory for value, copy value to allocated memroy and makes pointer of value in linked list point to it
@@ -102,7 +103,7 @@ void hashInsert(Hash *h, const char *key, void *value){
     
     hashKV *nextHashKV = malloc(sizeof(hashKV));
     
-    nextHashKV->key = malloc(stringPointerLength(key) + 1);
+    nextHashKV->key = malloc(hashStringPointerLength(key) + 1);
     strcpy(nextHashKV->key, key);
     
     nextHashKV->value = malloc(h->valueSize);
@@ -112,6 +113,8 @@ void hashInsert(Hash *h, const char *key, void *value){
     currentHashKV->next = nextHashKV;   
 }
 
+
+//Removes key and it's value from hash using given key and returns 0 if found key and deleted it else 1 (not found)
 int hashDeleteKeyValue(Hash *h, char *key){
     int hashIndex = hashKey(key);
     hashKV *currentHashKV = (hashKV *)h->hash + hashIndex;
@@ -122,6 +125,7 @@ int hashDeleteKeyValue(Hash *h, char *key){
             free(currentHashKV->value);
             currentHashKV->key = NULL;
             currentHashKV->value = NULL;
+            return 0;
         }
         currentHashKV = currentHashKV->next;
     }
@@ -131,11 +135,13 @@ int hashDeleteKeyValue(Hash *h, char *key){
         free(currentHashKV->value);
         currentHashKV->key = NULL;
         currentHashKV->value = NULL;
+        return 0;
     }
+    return 1;
 }
 
 
-//copy contants of value of given key if key is found and returns 0 else not found 1
+//copy contants of value to given value address if given key was found in hash and returns o eles 1(not found)
 int hashSearch(Hash *h, char *key, void *value){
     int hashIndex = hashKey(key);
     hashKV *currentHashKV = (hashKV *)h->hash + hashIndex;
