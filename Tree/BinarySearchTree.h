@@ -13,7 +13,7 @@ Node *BSTMin(Node *root);
 
 Node *BSTMax(Node *root);
 
-Node *BSTDelete(Node *root, int data);
+Node *BSTNodeDelete(Node *root, int data);
 
 int BSTValue(Node *node);
 
@@ -25,6 +25,14 @@ int BSTHeight(Node *root);
 
 int BSTTotalNode(Node *root);
 
-Node *BSTinorder(Node *root);
+Node *BSTInorder(Node *root);
+
+Node *BSTPostorder(Node *root);
+
+Node *BSTPreorder(Node *root);
+
+Node *BSTRemove(Node *root);
+
+int BSTEmpty(Node *root);
 
 #endif

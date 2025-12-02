@@ -70,15 +70,15 @@ Node *BSTMax(Node *root){
 }
 
 // Removes node which has same data as given data
-Node *BSTDelete(Node *root, int data){
+Node *BSTNodeDelete(Node *root, int data){
     if(root == NULL){
         return NULL;
     }
     if(root->data < data){ // if data is smaller than node's data call same for right child node
-        root->right = BSTDelete(root->right, data);
+        root->right = BSTNodeDelete(root->right, data);
     }
     else if(root->data > data){ // if data is bigger than node's data call same for left child node
-        root->left = BSTDelete(root->left, data);
+        root->left = BSTNodeDelete(root->left, data);
     }
     else{ // If node's data is same as given data
         if(root->left == NULL && root->right == NULL){ // If both child of node is null(Leaf node) directly free node
@@ -100,7 +100,7 @@ Node *BSTDelete(Node *root, int data){
         else{ // If node has both child than makes left child current node
             Node* succ = BSTMin(root->right);
             root->data = succ->data;
-            root->right = BSTDelete(root->right, succ->data);
+            root->right = BSTNodeDelete(root->right, succ->data);
         }   
     }
     return root;
@@ -142,15 +142,59 @@ int BSTTotalNode(Node *root){
 
 // Transvers function Left -> Root -> Right
 // Used for accessing elements in sorted order
-Node *BSTinorder(Node *root){
+Node *BSTInorder(Node *root){
     if(root->left){
-        BSTinorder(root->left);
+        BSTInorder(root->left);
     }
     printf("Value %d\n", root->data);
     if(root->right){
-        BSTinorder(root->right);
+        BSTInorder(root->right);
     }
     return NULL;
+}
+
+// Transvers fuction Left -> Right -> Root
+// Access left and right child node and then parent node
+Node *BSTPostorder(Node *root){
+    if(root->left){
+        BSTPostorder(root->left);
+    }
+    if(root->right){
+        BSTPostorder(root->right);
+    }
+    printf("Value %d\n", root->data);
+    return NULL;
+}
+
+// Transvers fuction Root -> Left -> Right
+// Access parent node and then left and right child node 
+Node *BSTPreorder(Node *root){
+    printf("Value %d\n", root->data);
+    if(root->left){
+        BSTPostorder(root->left);
+    }
+    if(root->right){
+        BSTPostorder(root->right);
+    }
+    return NULL;
+}
+
+//Frees the memory of a binary tree
+Node *BSTRemove(Node *root){
+    // Uses postorder transvers
+    if(root->left){
+        BSTRemove(root->left);
+    }
+    if(root->right){
+        BSTRemove(root->right);
+    }
+    free(root);
+    return NULL;
+}
+
+// Returns true(1) if given root not is empty else false(0)
+int BSTEmpty(Node *root){
+    return root == NULL;
 }
 
 
@@ -167,21 +211,25 @@ Node *BSTinorder(Node *root){
 //     BSTInsert(n, 13);
 //     BSTInsert(n, 18);
 //     printf("Tree after adding elements");
-//     BSTinorder(n);
+//     BSTInorder(n);
 
 //     number = 1;
-//     BSTDelete(n, number);
+//     BSTNodeDelete(n, number);
 //     if(BSTSearch(n, number)){
 //         printf("\nFound %d in tree.\n", number);
 //     }
 //     else{
 //         printf("\nCan not find %d in tree.\n", number);
 //     }
-//     BSTinorder(n);
+//     BSTInorder(n);
+
+//     BSTPreorder(n);
+//     BSTPostorder(n);
 
 //     printf("Height of tree is %d\n", BSTHeight(n));
 //     printf("Total node(s) of tree is %d\n", BSTTotalNode(n));
 
 
+//     BSTRemove(n);
 //     return 0;
 // }
