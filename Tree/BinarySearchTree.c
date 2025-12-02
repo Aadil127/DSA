@@ -124,7 +124,7 @@ Node *BSTNodeRight(Node *Node){
 // Returns height of tree
 int BSTHeight(Node *root){
     if(root == NULL){
-        return 0;
+        return -1;
     }
     if(BSTHeight(root->left) < BSTHeight(root->right)){
         return BSTHeight(root->right) + 1;
