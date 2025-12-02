@@ -221,9 +221,16 @@ int BSTEmpty(Node *root){
 //     else{
 //         printf("\nCan not find %d in tree.\n", number);
 //     }
+
+//     printf("After removing one element from tree.\n");
+//     printf("Inorder transverse\n");
 //     BSTInorder(n);
 
+//     printf("Preorder transverse\n");
 //     BSTPreorder(n);
+
+//     printf("Postorder transverse\n");
+
 //     BSTPostorder(n);
 
 //     printf("Height of tree is %d\n", BSTHeight(n));
