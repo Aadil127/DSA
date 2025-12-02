@@ -3,6 +3,11 @@
 #include<string.h>
 #include "dynamicArray.h"
 
+struct Array{
+    void *array;
+    size_t elementSize, size, length;
+};
+
 //Creates array of given size, datatype  and returns pointer of the array
 Array *arrayCreate(size_t size, size_t elementSize){
     Array *a = malloc(sizeof(Array));
@@ -30,7 +35,7 @@ int arrayEmpty(Array *a){
 
 //Inserts the element at given index in array
 void arrayInsert(Array *a, void *element, int index){
-    if(index >= a->size){
+    if((size_t)index >= a->size){
         a->size = index + 1;
         a->array = realloc(a->array, a->size * a->elementSize);
     }
@@ -44,7 +49,7 @@ void arrayInsert(Array *a, void *element, int index){
     }
 
     //shift all elements to right by 1 index
-    if(index > a->length){
+    if((size_t)index > a->length){
         printf("can not insert becaues given is bigger that array's length.");
         exit(1);
     }

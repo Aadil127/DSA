@@ -8,10 +8,7 @@
 /*
 * Dynamic array
 */
-typedef struct {
-    void *array;
-    size_t elementSize, size, length;
-}Array;
+typedef struct Array Array;
 
 Array *arrayCreate(size_t size, size_t elementSize);
 

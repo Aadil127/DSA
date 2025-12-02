@@ -31,7 +31,7 @@ Hash *hashCreate(size_t size, size_t valueSize){
 //Frees the memory of a hashtable
 void hashRemove(Hash *h){
     hashKV *hkvLinkedList = (hashKV *)h->hash;
-    for(int i = 0; i < h->size; i++){
+    for(size_t i = 0; i < h->size; i++){
         hashKV *node = hkvLinkedList[i].next;
         hashKV *temp;
 

@@ -21,7 +21,7 @@ size_t hashStringPointerLength(const char *strPtr);
 
 void hashInsert(Hash *h, const char *key, void *value);
 
-void hashDeleteKeyValue(Hash *h, char *key);
+int hashDeleteKeyValue(Hash *h, char *key);
 
 int hashSearch(Hash *h, char *key, void *value);
 
