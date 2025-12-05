@@ -35,4 +35,6 @@ Node *BSTRemove(Node *root);
 
 int BSTEmpty(Node *root);
 
+Node *BSTPrintTree(Node *root, int padding);
+
 #endif

@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<string.h>
 #include"binarySearchTree.h"
 
 // BST Node
@@ -197,6 +196,20 @@ int BSTEmpty(Node *root){
     return root == NULL;
 }
 
+// Prints tree in terminal (rootNode, padding in int)
+Node *BSTPrintTree(Node *root, int padding){
+    if(root->right){
+        BSTPrintTree(root->right, padding + 5);
+        printf("%*c\n",padding + 4, '/');
+    }
+    printf("%*c(%d)\n", padding, ' ' , root->data);
+    if(root->left){
+        printf("%*c\n",padding + 4, '\\');
+        BSTPrintTree(root->left, padding + 5);
+    }
+    return NULL;
+}
+
 
 // int main(){
 
@@ -211,32 +224,21 @@ int BSTEmpty(Node *root){
 //     BSTInsert(n, 13);
 //     BSTInsert(n, 18);
 //     printf("Tree after adding elements");
-//     BSTInorder(n);
+//     BSTinorder(n);
 
 //     number = 1;
-//     BSTNodeDelete(n, number);
+//     BSTDelete(n, number);
 //     if(BSTSearch(n, number)){
 //         printf("\nFound %d in tree.\n", number);
 //     }
 //     else{
 //         printf("\nCan not find %d in tree.\n", number);
 //     }
-
-//     printf("After removing one element from tree.\n");
-//     printf("Inorder transverse\n");
-//     BSTInorder(n);
-
-//     printf("Preorder transverse\n");
-//     BSTPreorder(n);
-
-//     printf("Postorder transverse\n");
-
-//     BSTPostorder(n);
+//     BSTinorder(n);
 
 //     printf("Height of tree is %d\n", BSTHeight(n));
 //     printf("Total node(s) of tree is %d\n", BSTTotalNode(n));
 
 
-//     BSTRemove(n);
 //     return 0;
 // }
