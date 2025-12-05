@@ -157,3 +157,27 @@ Node *AVLPrintTree(Node *root, int padding){
     }
     return NULL;
 }
+
+// int main(){
+//      Node *n = AVLNodeCreate(10);
+
+//     n = AVLInsert(n, 5);
+//     n = AVLInsert(n, 15);
+//     n = AVLInsert(n, 1);
+//     n = AVLInsert(n, 8);
+//     n = AVLInsert(n, 13);
+//     n = AVLInsert(n, 18);
+//     n = AVLInsert(n, 9);
+//     n = AVLInsert(n, 6);
+//     n = AVLInsert(n, 19);
+//     n = AVLInsert(n, 20);
+//     n = AVLInsert(n, 2);
+//     n = AVLInsert(n, 3);
+//     AVLInorder(n);
+//     printf("\n");
+//     printf("(value)height\n\n");
+//     AVLPrintTree(n,5);
+
+//     AVLRemove(n);
+//     return 0;
+// }
