@@ -91,6 +91,10 @@ void arrayRemove(Array *a){
     free(a);
 }
 
+void *arrayElement(Array *a, int index){
+    return (char *)a->array + index * a->elementSize;
+}
+
 // int main(){
 //     int number = 100;
 //     Array *a = arrayCreate(1, sizeof(int));

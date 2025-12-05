@@ -22,4 +22,6 @@ void arrayDeleteElement(Array *a, int index);
 
 void arrayRemove(Array *a);
 
+void *arrayElement(Array *a, int index);
+
 #endif
