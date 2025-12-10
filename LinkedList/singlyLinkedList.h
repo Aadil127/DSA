@@ -25,6 +25,8 @@ int listEmpty(List *l);
 
 void listTransverseFd(List *l, void *element);
 
+void *listTransverseFdReturn(List *l);
+
 void listRemove(List *l);
 
 #endif

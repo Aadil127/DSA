@@ -25,7 +25,11 @@ int dListEmpty(List *l);
 
 void dListTransverseFd(List *l, void *element);
 
+void *dListTransverseBkReturn(List *l);
+
 void dListTransverseBk(List *l, void *element);
+
+void *dListTransverseFdReturn(List *l);
 
 void dListRemove(List *l);
 

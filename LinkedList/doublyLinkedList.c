@@ -180,6 +180,23 @@ void dListTransverseFd(List *l, void *element){
     memcpy(element, n->element, l->elementSize);
 }
 
+// Moves to next node in each function call starting from head and retruns element of each node
+void *dListTransverseFdReturn(List *l){
+    if( l != NULL && dListEmpty(l)){
+        printf("List in empty.");
+        exit(1);
+    }
+
+    static Node *n = NULL;
+    if(n == NULL){
+        n = l->head;
+    }
+    else{
+        n = n->next;
+    }
+    return n->element;
+}
+
 // Moves to previous node in each function call starting from tail and retruns element of each node
 void dListTransverseBk(List *l, void *element){
     if( l != NULL && dListEmpty(l)){
@@ -195,6 +212,23 @@ void dListTransverseBk(List *l, void *element){
         n = n->prev;
     }
     memcpy(element, n->element, l->elementSize);
+}
+
+// Moves to previous node in each function call starting from tail and retruns element of each node
+void *dListTransverseBkReturn(List *l){
+    if( l != NULL && dListEmpty(l)){
+        printf("List in empty.");
+        exit(1);
+    }
+
+    static Node *n = NULL;
+    if(n == NULL){
+        n = l->tail;
+    }
+    else{
+        n = n->prev;
+    }
+   return n->element;
 }
 
 

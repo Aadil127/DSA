@@ -151,6 +151,23 @@ void listTransverseFd(List *l, void *element){
     memcpy(element, n->element, l->elementSize);
 }
 
+// Moves to next node in each function call starting from head and retruns element of each node
+void *listTransverseFdReturn(List *l){
+    if(listEmpty(l)){
+        printf("List in empty.");
+        exit(1);
+    }
+    static Node *n = NULL;
+    if(n == NULL){
+        n = malloc(sizeof(Node));
+        n = l->head;
+    }
+    else{
+        n = n->next;
+    }
+    return n->element;
+}
+
 // Frees memory of given list
 void listRemove(List *l){
     Node *node = l->head;

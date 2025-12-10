@@ -53,7 +53,7 @@ void dequeue(Queue *q, void *element){
         exit(1);
     }
     memcpy(element, (char*)q->queue + (q->front - 1) * q->elementSize, q->elementSize);
-    // (q->front - 1) because we want to get previous element that front means dequeued element's value 
+    // (q->front - 1) because we want to get previous element 
     q->front = (q->front + 1) % q->size;
     q->length--;
 }
