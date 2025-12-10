@@ -1,9 +1,9 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include"maxHeap.h"
+#include"minHeap.h"
 
 /*
-* Max Heap
+* Min Heap
 */
 struct Heap{
     int *array;
@@ -11,7 +11,7 @@ struct Heap{
 };
 
 // Creates heap with given size and returns pointer
-Heap *heapCreate(int size){
+Heap *minHeapCreate(int size){
     Heap *h = malloc(sizeof(Heap));
     h->size = size; // total size of heap
     h->length = 0; // current space taken by elements
@@ -20,83 +20,83 @@ Heap *heapCreate(int size){
 }
 
 // returns true(1) if heap is empty else false(0)
-int heapEmpty(Heap *h){
+int minHeapEmpty(Heap *h){
     return h->length == 0;
 }
 
 // returns heap's total size
-int heapSize(Heap *h){
+int minHeapSize(Heap *h){
     return h->size;
 }
 
 // returns heap's length(filled elements)
-int heapLength(Heap *h){
+int minHeapLength(Heap *h){
     return h->length;
 }
 
 // returns true(1) if heap is full else false(0)
-int heapFull(Heap *h){
+int minHeapFull(Heap *h){
     return h->length == h->size;
 }
 
 // returns root element
-int heapTop(Heap *h){
+int minHeapTop(Heap *h){
     return h->array[0];
 }
 
 // uitlity funstion to swap variable
-void swap(int *a, int *b){
+void minHeapSwap(int *a, int *b){
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
 // moves element up in heap
-void heapUp(Heap *h, int index){
+void minHeapUp(Heap *h, int index){
     int *array = h->array;
-    while(index >= 0 && array[(index - 1 )/ 2] < array[index]){
-        swap(&array[(index - 1 )/ 2], &array[index]);
+    while(index >= 0 && array[(index - 1 )/ 2] > array[index]){
+        minHeapSwap(&array[(index - 1 )/ 2], &array[index]);
         index = (index - 1) / 2;
     }
 }
 
 // moves element down in heap
-void heapDown(Heap *h){
+void minHeapDown(Heap *h){
     int *array = h->array;
     int index = 0;
 
-    int largeChildIndex = (array[index * 2 + 1] > array[index *2 + 2]) ? index * 2 + 1 : index * 2 + 2;
-    while(index <= h->length && array[index] < array[largeChildIndex]){
-        swap(&array[index], &array[largeChildIndex]);
-        index = largeChildIndex;
+    int smallChildIndex = (array[index * 2 + 1] < array[index *2 + 2]) ? index * 2 + 1 : index * 2 + 2;
+    while(index <= h->length && array[index] > array[smallChildIndex]){
+        minHeapSwap(&array[index], &array[smallChildIndex]);
+        index = smallChildIndex;
     }
 }
 
 
 // adds new element in heap
-void heapPush(Heap *h, int element){
+void minHeapPush(Heap *h, int element){
     if(h->length == h->size){
         h->array = realloc(h->array, h->size * 2);
     }
     h->array[h->length] = element;
     int index = h->length;
-    heapUp(h, index);
+    minHeapUp(h, index);
     h->length++;
 }
 
 
 // removes root emement from heap and returns it
-int heapPop(Heap *h){
+int minHeapPop(Heap *h){
     int rootElement = h->array[0];
     h->array[0] = h->array[h->length - 1];
     h->length--;
-    heapDown(h);
+    minHeapDown(h);
     return rootElement;
 }
 
 
 // prints elements of heap
-void heapPrint(Heap *h){
+void minHeapPrint(Heap *h){
     int *array = h->array;
     printf("Heap value.\n");
     for(int index = 0; index < h->length; index++){
@@ -107,28 +107,28 @@ void heapPrint(Heap *h){
 
 
 //Frees the memory of a heap
-void heapRemove(Heap *h){
+void minHeapRemove(Heap *h){
     free(h->array);
     free(h);
 }
 
 // int main(){
-//     //Heap
-//     Heap *h = heapCreate(100);
+//     // min Heap
+//     Heap *h1 = minHeapCreate(100);
 
-//     heapPush(h, 10);
-//     heapPush(h, 9);
-//     heapPush(h, 8);
-//     heapPush(h, 3);
-//     heapPush(h, 20);
+//     minHeapPush(h1, 10);
+//     minHeapPush(h1, 9);
+//     minHeapPush(h1, 8);
+//     minHeapPush(h1, 3);
+//     minHeapPush(h1, 20);
 
-//     heapPrint(h);
+//     minHeapPrint(h1);
 
-//     heapPop(h);
+//     minHeapPop(h1);
 
-//     heapPrint(h);
+//     minHeapPrint(h1);
 
-//     heapRemove(h);
+//     minHeapRemove(h1);
 
 //     return 0;
 // }
