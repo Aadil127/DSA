@@ -3,4 +3,4 @@
 *.json
 makefile
 build
-*.c
+/*.c
