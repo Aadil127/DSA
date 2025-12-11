@@ -13,6 +13,8 @@ void matrixGraphRemoveEdge(Graph *g, int node1, int node2);
 
 void matrixGraphPrint(Graph *g);
 
+int martrixGraphNodeContainEdge(Graph *g, int node);
+
 int matrixGraphTotalNode(Graph *g);
 
 int matrixGraphTotalEdge(Graph *g);
