@@ -1,9 +1,7 @@
 #ifndef __dynamicArray__H
 #define __dynamicArray__H
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include<stddef.h>
 
 /*
 * Dynamic array
@@ -12,19 +10,19 @@ typedef struct Array Array;
 
 Array *arrayCreate(size_t size, size_t elementSize);
 
-void arrayAppend(Array *a, void *element);
+int arrayAppend(Array *a, void *element);
 
-void arraySet(Array *a, void *element, size_t index);
+int arraySet(Array *a, void *element, size_t index);
 
-void arraySwap(Array *a, size_t index1, size_t index2);
+int arraySwap(Array *a, size_t index1, size_t index2);
 
 int arrayEmpty(Array *a);
 
-void arrayInsert(Array *a, void *element, size_t index);
+int arrayInsert(Array *a, void *element, size_t index);
 
-void arrayDeleteElement(Array *a, size_t index);
+int arrayDeleteElement(Array *a, size_t index);
 
-void arrayRemove(Array *a);
+int arrayRemove(Array *a);
 
 void *arrayElement(Array *a, size_t index);
 

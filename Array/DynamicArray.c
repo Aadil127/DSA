@@ -1,4 +1,3 @@
-#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include "dynamicArray.h"
@@ -19,31 +18,34 @@ Array *arrayCreate(size_t size, size_t elementSize){
 }
 
 //Appends the element at the end of an array
-void arrayAppend(Array *a, void *element){
+int arrayAppend(Array *a, void *element){
     if(a->size == a->length){
         a->size *= 2;
         a->array = realloc(a->array, a->size * a->elementSize);
     }
     memcpy((char*)a->array + (a->length * a->elementSize), element, a->elementSize);
     a->length++;
+    return 0;
 }
 
 // Sets element at given index in array
-void arraySet(Array *a, void *element, size_t index){
+int arraySet(Array *a, void *element, size_t index){
     if(index > a->length || index > a->size){
-        printf("can not insert element outside of an array.");
-        exit(1);
+        return -1;
     }
     memcpy((char*)a->array + (index * a->elementSize), element, a->elementSize);
+    return 0;
 }
 
 // Swap two emements
-void arraySwap(Array *a, size_t index1, size_t index2){
+int arraySwap(Array *a, size_t index1, size_t index2){
+    if(index1 >= a->length || index2 >= a->length) return -1;
     void *temp = malloc(a->elementSize);
     memcpy(temp, (char *)a->array + (index1 * a->elementSize), a->elementSize);
     memcpy((char *)a->array + (index1 * a->elementSize), (char *)a->array + (index2 * a->elementSize), a->elementSize);
     memcpy((char *)a->array + (index2 * a->elementSize), temp, a->elementSize);
     free(temp);
+    return 0;
 }
 
 //Returns 1 if given array is empty else 0
@@ -52,10 +54,9 @@ int arrayEmpty(Array *a){
 }
 
 //Inserts the element at given index in array
-void arrayInsert(Array *a, void *element, size_t index){
+int arrayInsert(Array *a, void *element, size_t index){
     if(index > a->length || index > a->size){
-        printf("can not insert element outside of an array.");
-        exit(1);
+        return -1;
     }
     if(a->size <= a->length){
         a->size *= 2;
@@ -63,7 +64,7 @@ void arrayInsert(Array *a, void *element, size_t index){
     }
     if(a->length == 0){
         arrayAppend(a, element);
-        return;
+        return 0;
     }
 
     //shift all elements to right by 1 index
@@ -80,14 +81,14 @@ void arrayInsert(Array *a, void *element, size_t index){
         element,
         a->elementSize
     );
+    return 0;
 }
 
 
 // Removes element at given index
-void arrayDeleteElement(Array *a, size_t index){
-    if(a->length == 0){
-        printf("Error : Array is empty.");
-        exit(1);
+int arrayDeleteElement(Array *a, size_t index){
+    if(a->length == 0 || index >= a->length){
+        return -1;
     }
     //shift all elements to left by 1 index
     memmove(
@@ -97,15 +98,18 @@ void arrayDeleteElement(Array *a, size_t index){
     );
 
     a->length--;
+    return 0;
 }
 
 //Frees the memory of an array
-void arrayRemove(Array *a){
+int arrayRemove(Array *a){
     free(a->array);
     free(a);
+    return 0;
 }
 
 void *arrayElement(Array *a, size_t index){
+    if(index >= a->length) return NULL;
     return (char *)a->array + index * a->elementSize;
 }
 
@@ -118,28 +122,3 @@ size_t arraySize(Array *a){
 size_t arrayLength(Array *a){
     return a->length;
 }
-
-// int main(){
-//     int number = 100;
-//     Array *a = arrayCreate(1, sizeof(int));
-//     for(int i = 0; i < 10; i++){
-//         arrayInsert(a, &number, 0);
-//         // arrayAppend(a, &number);
-//         printf("Inserted %d at index 0\n", number);
-//         // arrayAppend(a, &number);
-//         number++;
-//     }
-
-//     printf("\nLength : %lu\n\n",a->length);
-
-//     int *numberptr;
-//     numberptr = (int *)a->array;
-//     for(int i = 0; i < a->length; i++){
-//         printf("Number : %d\n", *numberptr);
-//         numberptr++;
-//     }
-
-//     arrayRemove(a);
-
-//     return 0;
-// }
