@@ -35,7 +35,6 @@ void arraySet(Array *a, void *element, size_t index){
         exit(1);
     }
     memcpy((char*)a->array + (index * a->elementSize), element, a->elementSize);
-    a->length++;
 }
 
 // Swap two emements
