@@ -108,9 +108,16 @@ int arrayRemove(Array *a){
     return 0;
 }
 
-void *arrayElement(Array *a, size_t index){
+// Direclty returns pointer to element for given index, will return NULL if index in out of bounds for given array
+void *arrayElementR(Array *a, size_t index){
     if(index >= a->length) return NULL;
     return (char *)a->array + index * a->elementSize;
+}
+
+// Copy contents of element at given index to given address
+int arrayElement(Array *a, size_t index, void *element){
+    memcpy(element, (char *)a->array + index * a->elementSize, a->elementSize);
+    return 0;
 }
 
 // Returns total size of an array
