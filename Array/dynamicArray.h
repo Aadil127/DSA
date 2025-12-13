@@ -16,6 +16,8 @@ void arrayAppend(Array *a, void *element);
 
 void arraySet(Array *a, void *element, size_t index);
 
+void arraySwap(Array *a, size_t index1, size_t index2);
+
 int arrayEmpty(Array *a);
 
 void arrayInsert(Array *a, void *element, size_t index);

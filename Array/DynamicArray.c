@@ -38,6 +38,15 @@ void arraySet(Array *a, void *element, size_t index){
     a->length++;
 }
 
+// Swap two emements
+void arraySwap(Array *a, size_t index1, size_t index2){
+    void *temp = malloc(a->elementSize);
+    memcpy(temp, (char *)a->array + (index1 * a->elementSize), a->elementSize);
+    memcpy((char *)a->array + (index1 * a->elementSize), (char *)a->array + (index2 * a->elementSize), a->elementSize);
+    memcpy((char *)a->array + (index2 * a->elementSize), temp, a->elementSize);
+    free(temp);
+}
+
 //Returns 1 if given array is empty else 0
 int arrayEmpty(Array *a){
     return a->length == 0;
