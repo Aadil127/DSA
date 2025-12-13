@@ -24,4 +24,8 @@ void arrayRemove(Array *a);
 
 void *arrayElement(Array *a, int index);
 
+size_t arraySize(Array *a);
+
+size_t arrayLength(Array *a);
+
 #endif

@@ -95,6 +95,16 @@ void *arrayElement(Array *a, int index){
     return (char *)a->array + index * a->elementSize;
 }
 
+// Returns total size of an array
+size_t arraySize(Array *a){
+    return a->size;
+}
+
+// Returns current size of an array that elements are using
+size_t arrayLength(Array *a){
+    return a->length;
+}
+
 // int main(){
 //     int number = 100;
 //     Array *a = arrayCreate(1, sizeof(int));
