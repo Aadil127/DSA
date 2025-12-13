@@ -55,7 +55,7 @@ int arrayEmpty(Array *a){
 
 //Inserts the element at given index in array
 int arrayInsert(Array *a, void *element, size_t index){
-    if(index > a->length || index > a->size){
+    if(index > a->length){
         return -1;
     }
     if(a->size <= a->length){
