@@ -28,16 +28,26 @@ void arrayAppend(Array *a, void *element){
     a->length++;
 }
 
+// Sets element at given index in array
+void arraySet(Array *a, void *element, size_t index){
+    if(index > a->length || index > a->size){
+        printf("can not insert element outside of an array.");
+        exit(1);
+    }
+    memcpy((char*)a->array + (index * a->elementSize), element, a->elementSize);
+    a->length++;
+}
+
 //Returns 1 if given array is empty else 0
 int arrayEmpty(Array *a){
     return a->length == 0;
 }
 
 //Inserts the element at given index in array
-void arrayInsert(Array *a, void *element, int index){
-    if((size_t)index >= a->size){
-        a->size = index + 1;
-        a->array = realloc(a->array, a->size * a->elementSize);
+void arrayInsert(Array *a, void *element, size_t index){
+    if(index > a->length || index > a->size){
+        printf("can not insert element outside of an array.");
+        exit(1);
     }
     if(a->size <= a->length){
         a->size *= 2;
@@ -49,10 +59,6 @@ void arrayInsert(Array *a, void *element, int index){
     }
 
     //shift all elements to right by 1 index
-    if((size_t)index > a->length){
-        printf("can not insert becaues given is bigger that array's length.");
-        exit(1);
-    }
     a->length++;
     memmove(
         (char *)a->array + (index + 1) * a->elementSize,
@@ -70,7 +76,7 @@ void arrayInsert(Array *a, void *element, int index){
 
 
 // Removes element at given index
-void arrayDeleteElement(Array *a, int index){
+void arrayDeleteElement(Array *a, size_t index){
     if(a->length == 0){
         printf("Error : Array is empty.");
         exit(1);
@@ -91,7 +97,7 @@ void arrayRemove(Array *a){
     free(a);
 }
 
-void *arrayElement(Array *a, int index){
+void *arrayElement(Array *a, size_t index){
     return (char *)a->array + index * a->elementSize;
 }
 

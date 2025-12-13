@@ -14,15 +14,17 @@ Array *arrayCreate(size_t size, size_t elementSize);
 
 void arrayAppend(Array *a, void *element);
 
+void arraySet(Array *a, void *element, size_t index);
+
 int arrayEmpty(Array *a);
 
-void arrayInsert(Array *a, void *element, int index);
+void arrayInsert(Array *a, void *element, size_t index);
 
-void arrayDeleteElement(Array *a, int index);
+void arrayDeleteElement(Array *a, size_t index);
 
 void arrayRemove(Array *a);
 
-void *arrayElement(Array *a, int index);
+void *arrayElement(Array *a, size_t index);
 
 size_t arraySize(Array *a);
 
