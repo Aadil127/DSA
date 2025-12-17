@@ -30,7 +30,7 @@ int arrayAppend(Array *a, void *element){
 
 // Sets element at given index in array
 int arraySet(Array *a, void *element, size_t index){
-    if(index > a->length || index > a->size){
+    if(index > a->length){
         return -1;
     }
     memcpy((char*)a->array + (index * a->elementSize), element, a->elementSize);
