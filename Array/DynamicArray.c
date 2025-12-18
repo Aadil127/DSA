@@ -19,7 +19,7 @@ Array *arrayCreate(size_t size, size_t elementSize){
 
 //Appends the element at the end of an array
 int arrayAppend(Array *a, void *element){
-    if(a->size == a->length){
+    if(a->size <= a->length){
         a->size *= 2;
         a->array = realloc(a->array, a->size * a->elementSize);
     }
@@ -128,4 +128,44 @@ size_t arraySize(Array *a){
 // Returns current size of an array that elements are using
 size_t arrayLength(Array *a){
     return a->length;
+}
+
+// Shifts array's elements of given amount by specified steps to right starting frome given index
+// stpes = 1, index = 1, elementsAmount = 2 shifts 2 elements of array to right by one index form index 1
+// [1, 2, 3, 4, 5, 6, 7] -> [1, _, 2, 3, 5, 6, 7]
+// stpes = 2, index = 1, elementsAmount = 2 shifts 2 elements of array to right by two indexes form index 1
+// [1, 2, 3, 4, 5, 6, 7] -> [1, _, _, 2, 3, 6, 7]
+int arrayShiftRight(Array *a, size_t steps, size_t index, size_t elementsAmount){
+    if(!a || a->length == 0 || index > a->length){
+        return -1;
+    }
+    if(steps == 0){
+        return 0;
+    }
+    memmove(
+        (char *)a->array + (index + steps) * a->elementSize,
+        (char *)a->array + index * a->elementSize,
+        (elementsAmount - steps) * a->elementSize
+    );
+    return 0;
+}
+
+// Shifts array's elements of given amount by specified steps to left starting frome given index
+// stpes = 1, index = 1, elementsAmount = 2 shifts 2 elements of array to left by one index form index 1
+// [1, 2, 3, 4, 5, 6, 7] -> [2, 3, _, 4, 5, 6, 7]
+// stpes = 2, index = 1, elementsAmount = 2 shifts 2 elements of array to left by two indexes form index 1
+// [1, 2, 3, 4, 5, 6, 7] -> [3, _, _, 4, 5, 6, 7]
+int arrayShiftLeft(Array *a, size_t steps, size_t index, size_t elementsAmount){
+    if(!a || a->length == 0 || index > a->length){
+        return -1;
+    }
+    if(steps == 0){
+        return 0;
+    }
+    memmove(
+        (char *)a->array + index * a->elementSize,
+        (char *)a->array + (index + steps) * a->elementSize,
+        (elementsAmount - steps) * a->elementSize
+    );
+    return 0;
 }

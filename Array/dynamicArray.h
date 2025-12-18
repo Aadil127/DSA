@@ -32,4 +32,8 @@ size_t arraySize(Array *a);
 
 size_t arrayLength(Array *a);
 
+int arrayShiftRight(Array *a, size_t steps, size_t index, size_t elementsAmount);
+
+int arrayShiftLeft(Array *a, size_t steps, size_t index, size_t elementsAmount);
+
 #endif
