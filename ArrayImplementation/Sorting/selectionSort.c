@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <dynamicArray.h>
+#include "dynamicArray.h"
 
 void arraySelectionSort(Array *a);
 void printArray(Array *a);

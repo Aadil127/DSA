@@ -136,7 +136,7 @@ size_t arrayLength(Array *a){
 // stpes = 2, index = 1, elementsAmount = 2 shifts 2 elements of array to right by two indexes form index 1
 // [1, 2, 3, 4, 5, 6, 7] -> [1, _, _, 2, 3, 6, 7]
 int arrayShiftRight(Array *a, size_t steps, size_t index, size_t elementsAmount){
-    if(!a || a->length == 0 || index > a->length){
+    if(!a || a->length == 0 || index > a->length || index + steps + elementsAmount > a->length){
         return -1;
     }
     if(steps == 0){
@@ -145,7 +145,7 @@ int arrayShiftRight(Array *a, size_t steps, size_t index, size_t elementsAmount)
     memmove(
         (char *)a->array + (index + steps) * a->elementSize,
         (char *)a->array + index * a->elementSize,
-        (elementsAmount - steps) * a->elementSize
+        (elementsAmount) * a->elementSize
     );
     return 0;
 }
@@ -156,7 +156,7 @@ int arrayShiftRight(Array *a, size_t steps, size_t index, size_t elementsAmount)
 // stpes = 2, index = 1, elementsAmount = 2 shifts 2 elements of array to left by two indexes form index 1
 // [1, 2, 3, 4, 5, 6, 7] -> [3, _, _, 4, 5, 6, 7]
 int arrayShiftLeft(Array *a, size_t steps, size_t index, size_t elementsAmount){
-    if(!a || a->length == 0 || index > a->length){
+    if(!a || a->length == 0 || index > a->length || index - steps < 0 ){
         return -1;
     }
     if(steps == 0){
@@ -165,7 +165,7 @@ int arrayShiftLeft(Array *a, size_t steps, size_t index, size_t elementsAmount){
     memmove(
         (char *)a->array + index * a->elementSize,
         (char *)a->array + (index + steps) * a->elementSize,
-        (elementsAmount - steps) * a->elementSize
+        (elementsAmount) * a->elementSize
     );
     return 0;
 }
