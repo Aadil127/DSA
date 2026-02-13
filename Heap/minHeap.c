@@ -7,11 +7,11 @@
 */
 struct Heap{
     int *array;
-    int length, size;
+    size_t length, size;
 };
 
 // Creates heap with given size and returns pointer
-Heap *minHeapCreate(int size){
+Heap *minHeapCreate(size_t size){
     Heap *h = malloc(sizeof(Heap));
     h->size = size; // total size of heap
     h->length = 0; // current space taken by elements
@@ -25,12 +25,12 @@ int minHeapEmpty(Heap *h){
 }
 
 // returns heap's total size
-int minHeapSize(Heap *h){
+size_t minHeapSize(Heap *h){
     return h->size;
 }
 
 // returns heap's length(filled elements)
-int minHeapLength(Heap *h){
+size_t minHeapLength(Heap *h){
     return h->length;
 }
 
@@ -52,7 +52,7 @@ void minHeapSwap(int *a, int *b){
 }
 
 // moves element up in heap
-void minHeapUp(Heap *h, int index){
+void minHeapUp(Heap *h, size_t index){
     int *array = h->array;
     while(index >= 0 && array[(index - 1 )/ 2] > array[index]){
         minHeapSwap(&array[(index - 1 )/ 2], &array[index]);
@@ -63,15 +63,14 @@ void minHeapUp(Heap *h, int index){
 // moves element down in heap
 void minHeapDown(Heap *h){
     int *array = h->array;
-    int index = 0;
+    size_t index = 0;
 
-    int smallChildIndex = (array[index * 2 + 1] < array[index *2 + 2]) ? index * 2 + 1 : index * 2 + 2;
+    size_t smallChildIndex = (array[index * 2 + 1] < array[index *2 + 2]) ? index * 2 + 1 : index * 2 + 2;
     while(index <= h->length && array[index] > array[smallChildIndex]){
         minHeapSwap(&array[index], &array[smallChildIndex]);
         index = smallChildIndex;
     }
 }
-
 
 // adds new element in heap
 void minHeapPush(Heap *h, int element){
@@ -79,11 +78,10 @@ void minHeapPush(Heap *h, int element){
         h->array = realloc(h->array, h->size * 2);
     }
     h->array[h->length] = element;
-    int index = h->length;
+    size_t index = h->length;
     minHeapUp(h, index);
     h->length++;
 }
-
 
 // removes root emement from heap and returns it
 int minHeapPop(Heap *h){
@@ -94,17 +92,15 @@ int minHeapPop(Heap *h){
     return rootElement;
 }
 
-
 // prints elements of heap
 void minHeapPrint(Heap *h){
     int *array = h->array;
     printf("Heap value.\n");
-    for(int index = 0; index < h->length; index++){
+    for(size_t index = 0; index < h->length; index++){
         printf("%d ", array[index]);
     }
     printf("\n");
 }
-
 
 //Frees the memory of a heap
 void minHeapRemove(Heap *h){

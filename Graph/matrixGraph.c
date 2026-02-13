@@ -12,7 +12,7 @@ struct Graph{
 };
 
 // Initilize graph
-Graph *matrixGraphCreate(){
+Graph *matrixGraphCreate(void){
     Graph *g = malloc(sizeof(Graph));
     g->totalNode = 0;
     g->maxNode = 4;

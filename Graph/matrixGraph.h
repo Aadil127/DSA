@@ -3,7 +3,7 @@
 
 typedef struct Graph Graph;
 
-Graph *matrixGraphCreate();
+Graph *matrixGraphCreate(void);
 
 void matrixGraphNewNode(Graph *g);
 

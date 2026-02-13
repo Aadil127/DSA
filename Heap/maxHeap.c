@@ -7,11 +7,11 @@
 */
 struct Heap{
     int *array;
-    int length, size;
+    size_t length, size;
 };
 
 // Creates heap with given size and returns pointer
-Heap *heapCreate(int size){
+Heap *heapCreate(size_t size){
     Heap *h = malloc(sizeof(Heap));
     h->size = size; // total size of heap
     h->length = 0; // current space taken by elements
@@ -25,12 +25,12 @@ int heapEmpty(Heap *h){
 }
 
 // returns heap's total size
-int heapSize(Heap *h){
+size_t heapSize(Heap *h){
     return h->size;
 }
 
 // returns heap's length(filled elements)
-int heapLength(Heap *h){
+size_t heapLength(Heap *h){
     return h->length;
 }
 
@@ -52,7 +52,7 @@ void swap(int *a, int *b){
 }
 
 // moves element up in heap
-void heapUp(Heap *h, int index){
+void heapUp(Heap *h, size_t index){
     int *array = h->array;
     while(index >= 0 && array[(index - 1 )/ 2] < array[index]){
         swap(&array[(index - 1 )/ 2], &array[index]);
@@ -63,15 +63,14 @@ void heapUp(Heap *h, int index){
 // moves element down in heap
 void heapDown(Heap *h){
     int *array = h->array;
-    int index = 0;
+    size_t index = 0;
 
-    int largeChildIndex = (array[index * 2 + 1] > array[index *2 + 2]) ? index * 2 + 1 : index * 2 + 2;
+    size_t largeChildIndex = (array[index * 2 + 1] > array[index *2 + 2]) ? index * 2 + 1 : index * 2 + 2;
     while(index <= h->length && array[index] < array[largeChildIndex]){
         swap(&array[index], &array[largeChildIndex]);
         index = largeChildIndex;
     }
 }
-
 
 // adds new element in heap
 void heapPush(Heap *h, int element){
@@ -79,11 +78,10 @@ void heapPush(Heap *h, int element){
         h->array = realloc(h->array, h->size * 2);
     }
     h->array[h->length] = element;
-    int index = h->length;
+    size_t index = h->length;
     heapUp(h, index);
     h->length++;
 }
-
 
 // removes root emement from heap and returns it
 int heapPop(Heap *h){
@@ -94,17 +92,15 @@ int heapPop(Heap *h){
     return rootElement;
 }
 
-
 // prints elements of heap
 void heapPrint(Heap *h){
     int *array = h->array;
     printf("Heap value.\n");
-    for(int index = 0; index < h->length; index++){
+    for(size_t index = 0; index < h->length; index++){
         printf("%d ", array[index]);
     }
     printf("\n");
 }
-
 
 //Frees the memory of a heap
 void heapRemove(Heap *h){

@@ -3,7 +3,7 @@
 
 int arrayBinarySearch(Array *a, int number);
 
-int main(){
+int main(void){
     // Initialization
     Array *a = arrayCreate(1, sizeof(int));
     for (int i = 10; i < 60; i++){
@@ -24,15 +24,15 @@ int main(){
 
 int arrayBinarySearch(Array *a, int number){
     int low = 0;
-    int high = arrayLength(a) - 1;
+    int high = (int)arrayLength(a) - 1;
     int mid = 0;
     while(low <= high){
         mid = low + (high - low) / 2;
         
-        if(number ==  *(int *)arrayElementR(a, mid)){
-            return mid;
+        if(number ==  *(int *)arrayElementR(a, (size_t)mid)){
+            return (int)mid;
         }
-        else if(number > *(int *)arrayElementR(a, mid)){
+        else if(number > *(int *)arrayElementR(a, (size_t)mid)){
             low = mid + 1;
         }
         else{

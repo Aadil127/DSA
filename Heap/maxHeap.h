@@ -3,19 +3,19 @@
 
 typedef struct Heap Heap;
 
-Heap *heapCreate(int size);
+Heap *heapCreate(size_t size);
 
 int heapEmpty(Heap *h);
 
-int heapLength(Heap *h);
+size_t heapLength(Heap *h);
 
-int heapSize(Heap *h);
+size_t heapSize(Heap *h);
 
 int heapFull(Heap *h);
 
 int heapTop(Heap *h);
 
-void heapUp(Heap *h, int index);
+void heapUp(Heap *h, size_t index);
 
 void heapPush(Heap *h, int element);
 

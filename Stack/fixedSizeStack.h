@@ -15,10 +15,10 @@ int fStackFull(Stack *s);
 
 int fStackSize(Stack *s);
 
-void fStackPush(Stack *s, void *element);
+int fStackPush(Stack *s, void *element);
 
-void fStackPop(Stack *s, void *element);
+int fStackPop(Stack *s, void *element);
 
-void fStackPeek(Stack *s, void *element);
+int fStackPeek(Stack *s, void *element);
 
 #endif

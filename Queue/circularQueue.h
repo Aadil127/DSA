@@ -13,9 +13,9 @@ int queueEmpty(Queue *q);
 
 int queueFull(Queue *q);
 
-void enqueue(Queue *q, void *element);
+int enqueue(Queue *q, void *element);
 
-void dequeue(Queue *q, void *element);
+int dequeue(Queue *q, void *element);
 
 void queueRemove(Queue *q);
 

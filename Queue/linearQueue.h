@@ -13,9 +13,9 @@ int lQueueEmpty(Queue *q);
 
 int lQueueFull(Queue *q);
 
-void lEnqueue(Queue *q, void *element);
+int lEnqueue(Queue *q, void *element);
 
-void lDequeue(Queue *q, void *element);
+int lDequeue(Queue *q, void *element);
 
 void lQueueRemove(Queue *q);
 

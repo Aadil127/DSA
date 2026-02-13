@@ -1,4 +1,3 @@
-#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
 #include"fixedSizeStack.h"
@@ -18,7 +17,7 @@ Stack *fStackCreate(int size, size_t elementSize){
     s->top = -1;
     s->size = size;
     s->elementSize = elementSize;
-    s->stack = malloc(size * elementSize);
+    s->stack = malloc((size_t)size * elementSize);
     return s;
 }
 
@@ -38,13 +37,13 @@ int fstackSize(Stack *s){
 }
 
 //Adds element on top of the stack
-void fStackPush(Stack *s, void *element){
+int fStackPush(Stack *s, void *element){
     if(s->top == s->size - 1){
-        printf("Error : Stack is full");
-        exit(1);
+        return 1;
     }
     s->top++;
-    memcpy((char*)s->stack + s->top * s->elementSize, element, s->elementSize);
+    memcpy((char*)s->stack + (size_t)s->top * s->elementSize, element, s->elementSize);
+    return 0;
 }
 
 /*
@@ -53,13 +52,13 @@ void fStackPush(Stack *s, void *element){
 * stackPop(s, &number);
 * Returns the value from top of the stack to number variable
 */
-void fStackPop(Stack *s, void *element){
+int fStackPop(Stack *s, void *element){
     if(s->top == -1){
-        printf("Error : Stack is empty");
-        exit(1);
+        return 1;
     }
-    memcpy(element, (char*)s->stack + s->top * s->elementSize, s->elementSize);
+    memcpy(element, (char*)s->stack + (size_t)s->top * s->elementSize, s->elementSize);
     s->top--;
+    return 0;
 }
 
 /*
@@ -68,12 +67,12 @@ void fStackPop(Stack *s, void *element){
 * stackPeek(s, &number);
 * Returns the value from top of the stack to number variable
 */
-void fStackPeek(Stack *s, void *element){
+int fStackPeek(Stack *s, void *element){
     if(s->top == -1){
-        printf("Error : Stack is empty");
-        exit(1);
+        return 1;
     }
-    memcpy(element, (char*)s->stack + s->top * s->elementSize, s->elementSize);
+    memcpy(element, (char*)s->stack + (size_t)s->top * s->elementSize, s->elementSize);
+    return 0;
 }
 
 int fStackSize(Stack *s){

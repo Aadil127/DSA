@@ -125,7 +125,7 @@ void listDeleteElement(List *l, int index){
 }
 
 // Returns length of given list
-int listLen(List *l){//Not really need can directly access it.
+size_t listLen(List *l){//Not really need can directly access it.
     return l->length;
 }
 

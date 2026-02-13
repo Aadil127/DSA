@@ -1,6 +1,16 @@
 cmake_minimum_required(VERSION 3.10)
 project(DSA C)
 
+add_compile_options(
+    -Wall
+    -Wextra
+    -Wpedantic
+    -Wshadow
+    -Wconversion
+    -Werror
+)
+
+
 add_library(array
     Array/DynamicArray.c
 )
@@ -57,3 +67,8 @@ add_executable(linearSearch
     ArrayImplementation/Searching/linearSearch.c
 )
 target_link_libraries(linearSearch PRIVATE array)
+
+add_executable(infixToPostfix
+    StackImplementation/infixToPostfix.c
+)
+target_link_libraries(infixToPostfix PRIVATE stack)

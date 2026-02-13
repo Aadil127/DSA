@@ -19,7 +19,7 @@ void dListInsert(List *l, void *element, int index);
 
 void dListDeleteElement(List *l, int index);
 
-int dListLen(List *l);
+size_t dListLen(List *l);
 
 int dListEmpty(List *l);
 

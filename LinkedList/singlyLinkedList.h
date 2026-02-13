@@ -19,7 +19,7 @@ void listInsert(List *l, void *element, int index);
 
 void listDeleteElement(List *l, int index);
 
-int listLen(List *l);
+size_t listLen(List *l);
 
 int listEmpty(List *l);
 

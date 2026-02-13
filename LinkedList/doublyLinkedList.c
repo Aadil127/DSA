@@ -154,7 +154,7 @@ void dListRemove(List *l){
 
 
 // Returns length of given list
-int dListLen(List *l){//Not really need can directly access it.
+size_t dListLen(List *l){//Not really need can directly access it.
     return l->length;
 }
 

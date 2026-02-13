@@ -4,7 +4,7 @@
 
 int arrayLinearSearch(Array *a, int number);
 
-int main(){
+int main(void){
     Array *a = arrayCreate(1, sizeof(int));
     for (size_t i = 0; i < 20; i++){
         arrayAppend(a, &i);
@@ -20,7 +20,7 @@ int main(){
 int arrayLinearSearch(Array *a, int number){
     for (size_t index = 0; index < arrayLength(a); index++){
         if(number == *(int *)arrayElementR(a, index)){
-            return index;
+            return (int)index;
         }
     }
     return -1;

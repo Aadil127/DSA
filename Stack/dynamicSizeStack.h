@@ -7,7 +7,7 @@
 
 typedef struct Stack Stack;
 
-Stack *stackCreate(int size, size_t elementSize);
+Stack *stackCreate(size_t elementSize);
 
 int stackEmpty(Stack *s);
 
@@ -17,8 +17,8 @@ int stackSize(Stack *s);
 
 void stackPush(Stack *s, void *element);
 
-void stackPop(Stack *s, void *element);
+int stackPop(Stack *s, void *element);
 
-void stackPeek(Stack *s, void *element);
+int stackPeek(Stack *s, void *element);
 
 #endif
