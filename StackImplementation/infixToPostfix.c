@@ -7,7 +7,7 @@
 
 int isDigit(char ch);
 int getPrecedence(char ch);
-char *infixToPostfix(char *infixExpression);
+char *infixToPostfix(char *infixExpression, int *expressionRank);
 
 int main(void){
     char infixExpression[USER_INPUT_BUFFER];
@@ -17,25 +17,28 @@ int main(void){
 
     fgets(infixExpression, sizeof(infixExpression), stdin);
 
-    printf("Your input : %s", infixExpression);
-    printf("Postfix expression : %s\n", infixToPostfix(infixExpression));
+    //if expression rank is 1 it is valid expression
+    int expressionRank;
+    printf("Postfix expression : %s\nExpression rank : %d\n", infixToPostfix(infixExpression, &expressionRank), expressionRank);
 
     return 0;
 }
 
-char *infixToPostfix(char *infixExpression){
+char *infixToPostfix(char *infixExpression, int *expressionRank){
     size_t infixExprssionSize = strlen(infixExpression);
     char *posfixExpression = malloc(sizeof(char) * infixExprssionSize);
     size_t posfixExpressionIndex = 0;
     Stack *stack = stackCreate(sizeof(char));
+    int expressionRankVar = 0;
 
     char topChar;
     int infixExpOperatorPrecedence;
     for(size_t infixExpressionIndex = 0; infixExpressionIndex < infixExprssionSize; infixExpressionIndex++){
 
         //Just to add white space when one number ends and other starts to distinguish between 11+2 -> 11 2 + 
-        if(infixExpressionIndex > 0 && isDigit(infixExpression[infixExpressionIndex - 1]) && !isDigit(infixExpression[infixExpressionIndex])){
+        if(infixExpressionIndex > 0 && isDigit(infixExpression[infixExpressionIndex - 1]) && !isDigit(infixExpression[infixExpressionIndex]) && infixExpression[infixExpressionIndex] != '.'){
             posfixExpression[posfixExpressionIndex++] = ' ';
+            expressionRankVar++;
         }
 
         //To check if given char is digit and directly add it to postfix expression
@@ -58,6 +61,7 @@ char *infixToPostfix(char *infixExpression){
         }
         //Check precendence if top has higher precedence than given operator pop top and push given operator
         else if((infixExpOperatorPrecedence = getPrecedence(infixExpression[infixExpressionIndex]))){
+            expressionRankVar--;
             stackPeek(stack, &topChar);
             while(!stackEmpty(stack) && (getPrecedence(topChar) >= infixExpOperatorPrecedence)){
                 if(infixExpression[infixExpressionIndex] == '^' && topChar == '^') break;
@@ -71,6 +75,7 @@ char *infixToPostfix(char *infixExpression){
         // to allow letters eg A + B * C
         else{
             if(infixExpression[infixExpressionIndex] != '\n' && infixExpression[infixExpressionIndex] != ' '){
+                expressionRankVar++;
                 posfixExpression[posfixExpressionIndex] = infixExpression[infixExpressionIndex];
                 posfixExpressionIndex++;
             }
@@ -85,6 +90,9 @@ char *infixToPostfix(char *infixExpression){
     }
     
     posfixExpression[posfixExpressionIndex] = '\0';
+    if(expressionRank != NULL){
+        *expressionRank = expressionRankVar;
+    }
     return posfixExpression;
 }
 
