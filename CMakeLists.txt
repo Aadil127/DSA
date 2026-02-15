@@ -10,6 +10,18 @@ add_compile_options(
     -Werror
 )
 
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    add_compile_options(
+        -g
+        -O0
+        -fsanitize=address
+        -fno-omit-frame-pointer
+    )
+    add_link_options(
+        -fsanitize=address
+    )
+endif()
+
 
 add_library(array
     Array/DynamicArray.c
@@ -71,4 +83,4 @@ target_link_libraries(linearSearch PRIVATE array)
 add_executable(infixToPostfix
     StackImplementation/infixToPostfix.c
 )
-target_link_libraries(infixToPostfix PRIVATE stack)
+target_link_libraries(infixToPostfix PRIVATE stack array)
