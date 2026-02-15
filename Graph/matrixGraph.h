@@ -7,9 +7,9 @@ Graph *matrixGraphCreate(void);
 
 void matrixGraphNewNode(Graph *g);
 
-void matrixGraphAddEdge(Graph *g, int node1, int node2);
+int matrixGraphAddEdge(Graph *g, int node1, int node2);
 
-void matrixGraphRemoveEdge(Graph *g, int node1, int node2);
+int matrixGraphRemoveEdge(Graph *g, int node1, int node2);
 
 void matrixGraphPrint(Graph *g);
 

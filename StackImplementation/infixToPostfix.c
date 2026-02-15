@@ -27,7 +27,6 @@ int main(void){
     printf("Postfix expression : %s\nExpression rank : %d\n", expressionResult, expressionRank);
     free(expressionResult);
 
-
     printf("Enter an expression eg 1.2 - 3.4 * 5.6 : ");
 
     fgets(infixExpression, sizeof(infixExpression), stdin);
@@ -54,18 +53,20 @@ char *infixToPostfixLetters(char *infixExpression, int *expressionRank){
         //To check if given char is a digit or a letter and directly add it to postfix expression
         if(isDigit(*infixExpression) || isLetter(*infixExpression)){
             arrayAppend(postfixExpression, infixExpression);
+            arrayAppend(postfixExpression, &(char){' '});
 
             if(expressionRank != NULL) (*expressionRank)++;
         }
         //If ( directly add it to stack
         else if(*infixExpression == '('){
-            arrayAppend(postfixExpression, infixExpression);
+            stackPush(stack, infixExpression);
         }
         //If ) pop the stack until we encounter (
         else if(*infixExpression == ')'){
             stackPop(stack, &topChar);
             while (topChar != '('){
                 arrayAppend(postfixExpression, &topChar);
+                arrayAppend(postfixExpression, &(char){' '});
                 stackPop(stack, &topChar);
             }
         }
@@ -78,6 +79,7 @@ char *infixToPostfixLetters(char *infixExpression, int *expressionRank){
             while(!stackEmpty(stack) && (getPrecedence(topChar) >= infixExpOperatorPrecedence)){
                 if(*infixExpression == '^' && topChar == '^') break;
                 arrayAppend(postfixExpression, &topChar);
+                arrayAppend(postfixExpression, &(char){' '});
                 stackPop(stack, &topChar);
                 stackPeek(stack, &topChar);
             }
@@ -90,6 +92,7 @@ char *infixToPostfixLetters(char *infixExpression, int *expressionRank){
     while(!stackEmpty(stack)){
         stackPop(stack, &topChar);
         arrayAppend(postfixExpression, &topChar);
+        arrayAppend(postfixExpression, &(char){' '});
     }
 
     //Converting array to char to string and freeing memory used by dynamic array
@@ -123,13 +126,14 @@ char *infixToPostfix(char *infixExpression, int *expressionRank){
         }
         //If ( directly add it to stack
         else if(*infixExpression == '('){
-            arrayAppend(postfixExpression, infixExpression);
+            stackPush(stack, infixExpression);
         }
         //If ) pop the stack until we encounter (
         else if(*infixExpression == ')'){
             stackPop(stack, &topChar);
             while (topChar != '('){
                 arrayAppend(postfixExpression, &topChar);
+                arrayAppend(postfixExpression, &(char){' '});
                 stackPop(stack, &topChar);
             }
         }
@@ -142,6 +146,7 @@ char *infixToPostfix(char *infixExpression, int *expressionRank){
             while(!stackEmpty(stack) && (getPrecedence(topChar) >= infixExpOperatorPrecedence)){
                 if(*infixExpression == '^' && topChar == '^') break;
                 arrayAppend(postfixExpression, &topChar);
+                arrayAppend(postfixExpression, &(char){' '});
                 stackPop(stack, &topChar);
                 stackPeek(stack, &topChar);
             }
@@ -154,6 +159,7 @@ char *infixToPostfix(char *infixExpression, int *expressionRank){
     while(!stackEmpty(stack)){
         stackPop(stack, &topChar);
         arrayAppend(postfixExpression, &topChar);
+        arrayAppend(postfixExpression, &(char){' '});
     }
 
     //Converting array to char to string and freeing memory used by dynamic array
