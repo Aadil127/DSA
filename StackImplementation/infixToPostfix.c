@@ -106,6 +106,7 @@ char *infixToPostfixLetters(char *infixExpression, int *expressionRank){
 //Convert infix to postfix expression only for letters and digit
 //Accepts infix expression string and addres of varible to store expression rank leave it NULL if you do not need expression rank
 //Returns postfix expression string, must call free to deallocte memory of this string
+//Example: 1.2 - 3.4 * 567.890
 char *infixToPostfix(char *infixExpression, int *expressionRank){
     if(expressionRank != NULL) *expressionRank = 0;
     Array *postfixExpression = arrayCreate(1, sizeof(char));

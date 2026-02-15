@@ -1,10 +1,6 @@
 #ifndef __dynamicSizeStack__H
 #define __dynamicSizeStack__H
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-
 typedef struct Stack Stack;
 
 Stack *stackCreate(size_t elementSize);
@@ -20,5 +16,7 @@ void stackPush(Stack *s, void *element);
 int stackPop(Stack *s, void *element);
 
 int stackPeek(Stack *s, void *element);
+
+void stackRemove(Stack *s);
 
 #endif

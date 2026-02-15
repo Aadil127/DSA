@@ -72,13 +72,13 @@ int AVLValue(Node *node){
 }
 
 // Returns left child node of given node
-Node *AVLNodeLeft(Node *Node){
-    return Node->left;
+Node *AVLNodeLeft(Node *node){
+    return node->left;
 }
 
 // Returns right child node of given node
-Node *AVLNodeRight(Node *Node){
-    return Node->right;
+Node *AVLNodeRight(Node *node){
+    return node->right;
 }
 
 // Returns height of tree

@@ -52,7 +52,7 @@ void swap(int *a, int *b){
 }
 
 // moves element up in heap
-void heapUp(Heap *h, size_t index){
+void heapUp(Heap *h, int index){
     int *array = h->array;
     while(index >= 0 && array[(index - 1 )/ 2] < array[index]){
         swap(&array[(index - 1 )/ 2], &array[index]);
@@ -78,7 +78,7 @@ void heapPush(Heap *h, int element){
         h->array = realloc(h->array, h->size * 2);
     }
     h->array[h->length] = element;
-    size_t index = h->length;
+    int index = (int)h->length;
     heapUp(h, index);
     h->length++;
 }

@@ -52,7 +52,7 @@ void minHeapSwap(int *a, int *b){
 }
 
 // moves element up in heap
-void minHeapUp(Heap *h, size_t index){
+void minHeapUp(Heap *h, int index){
     int *array = h->array;
     while(index >= 0 && array[(index - 1 )/ 2] > array[index]){
         minHeapSwap(&array[(index - 1 )/ 2], &array[index]);
@@ -78,7 +78,7 @@ void minHeapPush(Heap *h, int element){
         h->array = realloc(h->array, h->size * 2);
     }
     h->array[h->length] = element;
-    size_t index = h->length;
+    int index = (int)h->length;
     minHeapUp(h, index);
     h->length++;
 }

@@ -111,13 +111,13 @@ int BSTValue(Node *node){
 }
 
 // Returns left child node of given node
-Node *BSTNodeLeft(Node *Node){
-    return Node->left;
+Node *BSTNodeLeft(Node *node){
+    return node->left;
 }
 
 // Returns right child node of given node
-Node *BSTNodeRight(Node *Node){
-    return Node->right;
+Node *BSTNodeRight(Node *node){
+    return node->right;
 }
 
 // Returns height of tree

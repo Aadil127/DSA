@@ -1,9 +1,7 @@
 #ifndef __fixedSizeStack__H
 #define __fixedSizeStack__H
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include<stddef.h>
 
 typedef struct Stack Stack;
 
@@ -20,5 +18,7 @@ int fStackPush(Stack *s, void *element);
 int fStackPop(Stack *s, void *element);
 
 int fStackPeek(Stack *s, void *element);
+
+void fStackRemove(Stack *s);
 
 #endif

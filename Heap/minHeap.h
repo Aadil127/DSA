@@ -15,7 +15,7 @@ int minHeapFull(Heap *h);
 
 int minHeapTop(Heap *h);
 
-void minHeapUp(Heap *h, size_t index);
+void minHeapUp(Heap *h, int index);
 
 void minHeapPush(Heap *h, int element);
 

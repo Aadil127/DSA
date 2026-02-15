@@ -46,25 +46,27 @@ void matrixGraphNewNode(Graph *g){
 }
 
 // Adds edge between given nodes
-void matrixGraphAddEdge(Graph *g, int node1, int node2){
+int matrixGraphAddEdge(Graph *g, int node1, int node2){
     if(node1 < 0 || node1 > g->totalNode || node2 < 0 || node2 > g->totalNode){
-        printf("Can not access given node.\n");
-        exit(1);
+        // Can not access given node.
+        return 1;
     }
     g->matrix[node1][node2] = 1;
     g->matrix[node2][node1] = 1;
     g->edge++;
+    return 0;
 }
 
 // Removes edge between given nodes
-void matrixGraphRemoveEdge(Graph *g, int node1, int node2){
+int matrixGraphRemoveEdge(Graph *g, int node1, int node2){
     if(node1 < 0 || node1 > g->totalNode || node2 < 0 || node2 > g->totalNode){
-        printf("Can not access given node.\n");
-        exit(1);
+        // Can not access given node.
+        return 1;
     }
     g->matrix[node1][node2] = 0;
     g->matrix[node2][node1] = 0;
     g->edge--;
+    return 0;
 }
 
 // Utility function to see graph matrix

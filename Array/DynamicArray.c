@@ -31,7 +31,7 @@ int arrayAppend(Array *a, void *element){
 // Sets element at given index in array
 int arraySet(Array *a, void *element, size_t index){
     if(index > a->length){
-        return -1;
+        return 1;
     }
     memcpy((char*)a->array + (index * a->elementSize), element, a->elementSize);
     return 0;
@@ -56,7 +56,7 @@ int arrayEmpty(Array *a){
 //Inserts the element at given index in array
 int arrayInsert(Array *a, void *element, size_t index){
     if(index > a->length){
-        return -1;
+        return 1;
     }
     if(a->size <= a->length){
         a->size *= 2;
@@ -88,7 +88,7 @@ int arrayInsert(Array *a, void *element, size_t index){
 // Removes element at given index
 int arrayDeleteElement(Array *a, size_t index){
     if(a->length == 0 || index >= a->length){
-        return -1;
+        return 1;
     }
     //shift all elements to left by 1 index
     memmove(
@@ -137,7 +137,7 @@ size_t arrayLength(Array *a){
 // [1, 2, 3, 4, 5, 6, 7] -> [1, _, _, 2, 3, 6, 7]
 int arrayShiftRight(Array *a, size_t steps, size_t index, size_t elementsAmount){
     if(!a || a->length == 0 || index > a->length || index + steps + elementsAmount > a->length){
-        return -1;
+        return 1;
     }
     if(steps == 0){
         return 0;
@@ -156,8 +156,8 @@ int arrayShiftRight(Array *a, size_t steps, size_t index, size_t elementsAmount)
 // stpes = 2, index = 1, elementsAmount = 2 shifts 2 elements of array to left by two indexes form index 1
 // [1, 2, 3, 4, 5, 6, 7] -> [3, _, _, 4, 5, 6, 7]
 int arrayShiftLeft(Array *a, size_t steps, size_t index, size_t elementsAmount){
-    if(!a || a->length == 0 || index > a->length || index - steps < 0 ){
-        return -1;
+    if(!a || a->length == 0 || index > a->length || (int)(index - steps) < 0 ){
+        return 1;
     }
     if(steps == 0){
         return 0;

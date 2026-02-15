@@ -15,7 +15,7 @@ int heapFull(Heap *h);
 
 int heapTop(Heap *h);
 
-void heapUp(Heap *h, size_t index);
+void heapUp(Heap *h, int index);
 
 void heapPush(Heap *h, int element);
 
