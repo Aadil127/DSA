@@ -84,3 +84,8 @@ add_executable(infixToPostfix
     StackImplementation/infixToPostfix.c
 )
 target_link_libraries(infixToPostfix PRIVATE stack array)
+
+add_executable(postfixEvaluation
+    StackImplementation/postfixEvaluation.c
+)
+target_link_libraries(postfixEvaluation PRIVATE stack m)

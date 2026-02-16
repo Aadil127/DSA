@@ -175,13 +175,11 @@ char *infixToPostfix(char *infixExpression, int *expressionRank){
 
 
 int isDigit(char ch){
-    if (ch >= '0' && ch <= '9') return 1;
-    return 0;
+    return ch >= '0' && ch <= '9';
 }
 
 int isLetter(char ch){
-    if (ch >= 'A' && ch <= 'z') return 1;
-    return 0;
+    return ch >= 'A' && ch <= 'z';
 }
 
 int getPrecedence(char ch){
