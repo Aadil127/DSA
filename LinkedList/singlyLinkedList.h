@@ -1,10 +1,6 @@
 #ifndef __singlyLinkedList__H
 #define __singlyLinkedList__H
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-
 typedef struct Node Node;
 
 typedef struct List List;
@@ -23,7 +19,7 @@ size_t listLen(List *l);
 
 int listEmpty(List *l);
 
-void listTransverseFd(List *l, void *element);
+int listTransverseFd(List *l, void *element);
 
 void *listTransverseFdReturn(List *l);
 

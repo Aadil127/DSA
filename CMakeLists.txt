@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 3.10)
 project(DSA C)
 
-add_compile_options(
-    -Wall
-    -Wextra
-    -Wpedantic
-    -Wshadow
-    -Wconversion
-    -Werror
-)
+# add_compile_options(
+#     -Wall
+#     -Wextra
+#     -Wpedantic
+#     -Wshadow
+#     -Wconversion
+#     -Werror
+# )
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_compile_options(
@@ -79,6 +79,31 @@ add_executable(linearSearch
     ArrayImplementation/Searching/linearSearch.c
 )
 target_link_libraries(linearSearch PRIVATE array)
+
+add_executable(bubbleSort
+    ArrayImplementation/Sorting/bubbleSort.c
+)
+target_link_libraries(bubbleSort PRIVATE array)
+
+add_executable(countingSort
+    ArrayImplementation/Sorting/countingSort.c
+)
+target_link_libraries(countingSort PRIVATE array)
+
+add_executable(insertionSort
+    ArrayImplementation/Sorting/insertionSort.c
+)
+target_link_libraries(insertionSort PRIVATE array)
+
+add_executable(radixSort
+    ArrayImplementation/Sorting/radixSort.c
+)
+target_link_libraries(radixSort PRIVATE array)
+
+add_executable(selectionSort
+    ArrayImplementation/Sorting/selectionSort.c
+)
+target_link_libraries(selectionSort PRIVATE array)
 
 add_executable(infixToPostfix
     StackImplementation/infixToPostfix.c

@@ -48,9 +48,10 @@ void arraySelectionSort(Array *a){
 
 // utility fucntion to print array
 void printArray(Array *a){
-    printf("\n");
+    printf("\n[");
     for (int i = 0; i < (int)arrayLength(a); i++){
-        printf("%d ", *(int *)arrayElementR(a, i));
+        if(i != 0) printf(", %d", *(int *)arrayElementR(a, i));
+        else printf(" %d", *(int *)arrayElementR(a, i));
     }
-    printf("\n");
+    printf(" ]\n");
 }

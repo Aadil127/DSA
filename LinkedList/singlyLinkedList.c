@@ -135,10 +135,9 @@ int listEmpty(List *l){
 }
 
 // Moves to next node in each function call starting from head and retruns element of each node
-void listTransverseFd(List *l, void *element){
+int listTransverseFd(List *l, void *element){
     if(listEmpty(l)){
-        printf("List in empty.");
-        exit(1);
+        return 1;
     }
     static Node *n = NULL;
     if(n == NULL){
@@ -149,23 +148,23 @@ void listTransverseFd(List *l, void *element){
         n = n->next;
     }
     memcpy(element, n->element, l->elementSize);
+    return 0;
 }
 
 // Moves to next node in each function call starting from head and retruns element of each node
 void *listTransverseFdReturn(List *l){
-    if(listEmpty(l)){
-        printf("List in empty.");
-        exit(1);
+    if(!listEmpty(l)){
+        static Node *n = NULL;
+        if(n == NULL){
+            n = malloc(sizeof(Node));
+            n = l->head;
+        }
+        else{
+            n = n->next;
+        }
+        return n->element;
     }
-    static Node *n = NULL;
-    if(n == NULL){
-        n = malloc(sizeof(Node));
-        n = l->head;
-    }
-    else{
-        n = n->next;
-    }
-    return n->element;
+    return NULL;
 }
 
 // Frees memory of given list
@@ -178,11 +177,8 @@ void listRemove(List *l){
         free(node);
         node = tempNode;
     }
-    // free(l->head);
     free(l);
 }
-
-
 
 void listPrint(List *l){
     Node *n = l->head;
@@ -194,21 +190,3 @@ void listPrint(List *l){
     }
     printf("index : %d Value %d\n", index, *(int *)n->element);
 }
-
-
-// int main(){
-//     List *l = listCreate(sizeof(int));
-//     int number = 100;
-//     for(int i = 0; i < 10; i++){
-//         listAppend(l, &number);
-//         number += 100;
-//     }
-//     number = 111;
-//     listInsert(l, &number, 2);
-//     listPrint(l);
-//     printf("After deleting element.\n");
-//     listDeleteElement(l, 10);
-//     listPrint(l);
-//     listRemove(l);
-//     return 0;
-// }

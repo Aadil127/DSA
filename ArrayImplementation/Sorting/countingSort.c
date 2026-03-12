@@ -50,14 +50,14 @@ void arrayCountingSort(Array *a){
     int countArrayIndex = 0;
     int countArrayValueAtIndex = 0;
     for(int i = 0; i < arrayMaxElement(a) + 1; i++) arrayAppend(count, &zero); // setting all values of count array to 0
-    
+
     for (int i = 0; i < (int)arrayLength(a); i++){ // counting elements in given array and setting values for count array
         countArrayIndex = *(int *)arrayElementR(a, i);
         countArrayValueAtIndex = *(int *)arrayElementR(count, countArrayIndex);
         countArrayValueAtIndex++;
         arraySet(count, &countArrayValueAtIndex, countArrayIndex);
     }
-    
+
     countArrayIndex = 0;
     int mainIndex = 0;
     while(mainIndex < (int)arrayLength(a)){ // setting values in given array using count array
@@ -78,9 +78,10 @@ void arrayCountingSort(Array *a){
 }
 
 void printArray(Array *a){
-    printf("\n");
+    printf("\n[");
     for (int i = 0; i < (int)arrayLength(a); i++){
-        printf("%d ", *(int *)arrayElementR(a, i));
+        if(i != 0) printf(", %d", *(int *)arrayElementR(a, i));
+        else printf(" %d", *(int *)arrayElementR(a, i));
     }
-    printf("\n");
+    printf(" ]\n");
 }
