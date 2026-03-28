@@ -38,6 +38,7 @@ double evaluatePostfixExpression(char *postfixExpressionChar){
             stackPop(stack, &num1);
             tempNum = evaluateExpression(*postfixExpressionChar, num1, num2);
             stackPush(stack, &tempNum);
+            tempNum = 0;
         }
         postfixExpressionChar++;
     }
