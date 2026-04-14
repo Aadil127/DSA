@@ -1,5 +1,5 @@
-#ifndef __maxHeap__H
-#define __maxHeap__H
+#ifndef __MAX_HEAP__H
+#define __MAX_HEAP__H
 
 typedef struct Heap Heap;
 

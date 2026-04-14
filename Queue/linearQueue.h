@@ -1,9 +1,5 @@
-#ifndef __linearQueue__H
-#define __linearQueue__H
-
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#ifndef __LINEAR_QUEUE__H
+#define __LINEAR_QUEUE__H
 
 typedef struct Queue Queue;
 

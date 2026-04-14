@@ -1,5 +1,5 @@
-#ifndef __dynamicArray__H
-#define __dynamicArray__H
+#ifndef __DYNAMIC_ARRAY__H
+#define __DYNAMIC_ARRAY__H
 
 #include<stddef.h>
 

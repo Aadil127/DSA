@@ -85,21 +85,3 @@ void fStackRemove(Stack *s){
     free(s);
 }
 
-// int main(){
-//     Stack *s = stackCreate(10, sizeof(int));//Initilizing stack with size 10;
-//     int number = 100;
-//     stackPush(s, &number);
-//     number = 200;
-//     stackPush(s, &number);
-//     stackPop(s, &number);
-
-//     Stack *s1 = stackCreate(5,sizeof(char));
-//     char c = 'A';
-//     stackPush(s1, &c);
-//     c = 'B';
-//     stackPush(s1, &c);
-
-//     stackRemove(s);
-//     stackRemove(s1);
-//     return 0;
-// }

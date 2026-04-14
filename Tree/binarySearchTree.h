@@ -1,5 +1,5 @@
-#ifndef __binarySearchTree__H
-#define __binarySearchTree__H
+#ifndef __BINARY_SEARCH_TREE__H
+#define __BINARY_SEARCH_TREE__H
 
 typedef struct Node Node;
 

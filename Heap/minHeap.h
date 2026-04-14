@@ -1,5 +1,5 @@
-#ifndef __minHeap__H
-#define __minHeap__H
+#ifndef __MIN_HEAP__H
+#define __MIN_HEAP__H
 
 typedef struct Heap Heap;
 

@@ -1,9 +1,5 @@
-#ifndef __circularQueue__H
-#define __circularQueue__H
-
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#ifndef __CIRCULAR_QUEUE__H
+#define __CIRCULAR_QUEUE__H
 
 typedef struct Queue Queue;
 

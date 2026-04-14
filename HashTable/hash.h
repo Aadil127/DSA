@@ -1,9 +1,6 @@
-#ifndef __hash__H
-#define __hash__H
+#ifndef __HASH__H
+#define __HASH__H
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
 
 /*
 * Hash

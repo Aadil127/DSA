@@ -1,5 +1,5 @@
-#ifndef __dynamicSizeStack__H
-#define __dynamicSizeStack__H
+#ifndef __DYNAMIC_SIZE_SATCK__H
+#define __DYNAMIC_SIZE_SATCK__H
 
 typedef struct Stack Stack;
 

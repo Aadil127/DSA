@@ -1,5 +1,6 @@
-#ifndef __matrixGraphWeighted__H
-#define __matrixGraphWeighted__H
+#ifndef __MATRIX_GRAPH_WEIGHTED__H
+#define __MATRIX_GRAPH_WEIGHTED__H
+
 
 typedef struct Graph Graph;
 

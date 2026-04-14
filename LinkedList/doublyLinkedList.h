@@ -1,9 +1,5 @@
-#ifndef __doublyLinkeList__H
-#define __doublyLinkeList__H
-
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#ifndef __DOUBLY_LINKED_LIST__H
+#define __DOUBLY_LINKED_LIST__H
 
 typedef struct Node Node;
 

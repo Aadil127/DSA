@@ -107,24 +107,3 @@ void minHeapRemove(Heap *h){
     free(h->array);
     free(h);
 }
-
-// int main(){
-//     // min Heap
-//     Heap *h1 = minHeapCreate(100);
-
-//     minHeapPush(h1, 10);
-//     minHeapPush(h1, 9);
-//     minHeapPush(h1, 8);
-//     minHeapPush(h1, 3);
-//     minHeapPush(h1, 20);
-
-//     minHeapPrint(h1);
-
-//     minHeapPop(h1);
-
-//     minHeapPrint(h1);
-
-//     minHeapRemove(h1);
-
-//     return 0;
-// }

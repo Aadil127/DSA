@@ -1,5 +1,5 @@
-#ifndef __matrixGraph__H
-#define __matrixGraph__H
+#ifndef __MATRIX_GRAPH__H
+#define __MATRIX_GRAPH__H
 
 typedef struct Graph Graph;
 

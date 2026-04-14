@@ -1,7 +1,5 @@
-#ifndef __fixedSizeStack__H
-#define __fixedSizeStack__H
-
-#include<stddef.h>
+#ifndef __FIXED_SIZE_SATCK__H
+#define __FIXED_SIZE_SATCK__H
 
 typedef struct Stack Stack;
 

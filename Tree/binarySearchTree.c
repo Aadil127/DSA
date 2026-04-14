@@ -100,7 +100,7 @@ Node *BSTNodeDelete(Node *root, int data){
             Node* succ = BSTMin(root->right);
             root->data = succ->data;
             root->right = BSTNodeDelete(root->right, succ->data);
-        }   
+        }
     }
     return root;
 }
@@ -166,7 +166,7 @@ Node *BSTPostorder(Node *root){
 }
 
 // Transvers fuction Root -> Left -> Right
-// Access parent node and then left and right child node 
+// Access parent node and then left and right child node
 Node *BSTPreorder(Node *root){
     printf("Value %d\n", root->data);
     if(root->left){
@@ -210,35 +210,3 @@ Node *BSTPrintTree(Node *root, int padding){
     return NULL;
 }
 
-
-// int main(){
-
-//     // Binary search tree
-//     Node *n = BSTNodeCreate(10);
-//     int number = 5;
-
-//     BSTInsert(n, 5);
-//     BSTInsert(n, 15);
-//     BSTInsert(n, 1);
-//     BSTInsert(n, 8);
-//     BSTInsert(n, 13);
-//     BSTInsert(n, 18);
-//     printf("Tree after adding elements");
-//     BSTinorder(n);
-
-//     number = 1;
-//     BSTDelete(n, number);
-//     if(BSTSearch(n, number)){
-//         printf("\nFound %d in tree.\n", number);
-//     }
-//     else{
-//         printf("\nCan not find %d in tree.\n", number);
-//     }
-//     BSTinorder(n);
-
-//     printf("Height of tree is %d\n", BSTHeight(n));
-//     printf("Total node(s) of tree is %d\n", BSTTotalNode(n));
-
-
-//     return 0;
-// }

@@ -100,17 +100,17 @@ void hashInsert(Hash *h, const char *key, void *value){
         }
         currentHashKV = currentHashKV->next;
     }
-    
+
     hashKV *nextHashKV = malloc(sizeof(hashKV));
-    
+
     nextHashKV->key = malloc(hashStringPointerLength(key) + 1);
     strcpy(nextHashKV->key, key);
-    
+
     nextHashKV->value = malloc(h->valueSize);
     memcpy(nextHashKV->value, value, h->valueSize);
-    
+
     nextHashKV->next = NULL;
-    currentHashKV->next = nextHashKV;   
+    currentHashKV->next = nextHashKV;
 }
 
 
@@ -152,16 +152,3 @@ int hashSearch(Hash *h, char *key, void *value){
     return 1;
 }
 
-
-// int main(){
-//     char pet[][10] = {"cat", "dog", "parrot", "sparrow", "hamster", "horse", "goat"};
-
-//     Hash *h1 = hashCreate(HASH_TABLE_SIZE, sizeof(int));
-//     for(int i = 0; i < 20; i++){
-//         hashInsert(h1, pet[i % 7], &i);
-//     }
-
-//     hashRemove(h1);
-
-//     return 0;
-// }

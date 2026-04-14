@@ -1,5 +1,5 @@
-#ifndef __AVLTree__H
-#define __AVLTree__H
+#ifndef __AVL_TREE__H
+#define __AVL_TREE__H
 
 typedef struct Node Node;
 

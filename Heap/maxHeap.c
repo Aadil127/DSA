@@ -108,23 +108,3 @@ void heapRemove(Heap *h){
     free(h);
 }
 
-// int main(){
-//     //Heap
-//     Heap *h = heapCreate(100);
-
-//     heapPush(h, 10);
-//     heapPush(h, 9);
-//     heapPush(h, 8);
-//     heapPush(h, 3);
-//     heapPush(h, 20);
-
-//     heapPrint(h);
-
-//     heapPop(h);
-
-//     heapPrint(h);
-
-//     heapRemove(h);
-
-//     return 0;
-// }
