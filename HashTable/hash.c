@@ -92,6 +92,12 @@ void hashInsert(Hash *h, const char *key, void *value){
         return;
     }
 
+    //override value for first key in list
+    if (currentHashKV->key && strcmp(currentHashKV->key, key) == 0){
+        memcpy(currentHashKV->value, value, h->valueSize);
+        return;
+    }
+
     while (currentHashKV->next != NULL){
         // if keys are same replace old value with new one
         if (currentHashKV->key && strcmp(currentHashKV->key, key) == 0){
