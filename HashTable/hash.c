@@ -22,7 +22,7 @@ struct Hash{
 //Creates hashtable of given size, datatype of value and returns pointer of the hashtable
 Hash *hashCreate(size_t size, size_t valueSize){
     Hash *h = malloc(sizeof(Hash));
-    h->size = HASH_TABLE_SIZE;
+    h->size = size;
     h->valueSize = valueSize;
     h->hash = calloc(size, sizeof(hashKV));
     return h;
@@ -54,10 +54,10 @@ void hashRemove(Hash *h){
 }
 
 //Creates hash from given key(only string with ascii character)
-int hashKey(const char *key){
+int hashKey(Hash *h, const char *key){
     int hash = 0;
     while(*key){//becomes false when reached '\0'
-        hash = (*key * HASH_MULTIPLIER + hash) % HASH_TABLE_SIZE;
+        hash = (*key * HASH_MULTIPLIER + hash) % h->size;
         key++;
     }
     return hash;//less than hash table size
@@ -75,7 +75,7 @@ size_t hashStringPointerLength(const char *strPtr){
 
 // key will always be string even if it is number
 void hashInsert(Hash *h, const char *key, void *value){
-    int hashIndex = hashKey(key);
+    int hashIndex = hashKey(h, key);
 
     hashKV *currentHashKV = (hashKV *)h->hash + hashIndex;
 
@@ -122,7 +122,7 @@ void hashInsert(Hash *h, const char *key, void *value){
 
 //Removes key and it's value from hash using given key and returns 0 if found key and deleted it else 1 (not found)
 int hashDeleteKeyValue(Hash *h, char *key){
-    int hashIndex = hashKey(key);
+    int hashIndex = hashKey(h, key);
     hashKV *currentHashKV = (hashKV *)h->hash + hashIndex;
 
     while (currentHashKV->next != NULL){
@@ -149,7 +149,7 @@ int hashDeleteKeyValue(Hash *h, char *key){
 
 //copy contants of value to given value address if given key was found in hash and returns o eles 1(not found)
 int hashSearch(Hash *h, char *key, void *value){
-    int hashIndex = hashKey(key);
+    int hashIndex = hashKey(h, key);
     hashKV *currentHashKV = (hashKV *)h->hash + hashIndex;
     if(currentHashKV->value){
         memcpy(value, currentHashKV->value, h->valueSize);

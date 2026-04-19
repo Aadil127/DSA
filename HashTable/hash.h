@@ -12,7 +12,7 @@ typedef struct Hash Hash;
 
 Hash *hashCreate(size_t size, size_t valueSize);
 
-int hashKey(const char *key);
+int hashKey(Hash *h, const char *key);
 
 size_t hashStringPointerLength(const char *strPtr);
 
