@@ -151,9 +151,16 @@ int hashDeleteKeyValue(Hash *h, char *key){
 int hashSearch(Hash *h, char *key, void *value){
     int hashIndex = hashKey(h, key);
     hashKV *currentHashKV = (hashKV *)h->hash + hashIndex;
-    if(currentHashKV->value){
+    if(currentHashKV->value && strcmp(currentHashKV->key, key) == 0){
         memcpy(value, currentHashKV->value, h->valueSize);
         return 0;
+    }
+    while(currentHashKV->next){
+        currentHashKV = currentHashKV->next;
+        if(currentHashKV->value && strcmp(currentHashKV->key, key) == 0){
+            memcpy(value, currentHashKV->value, h->valueSize);
+            return 0;
+        }
     }
     return 1;
 }

@@ -169,3 +169,31 @@ int arrayShiftLeft(Array *a, size_t steps, size_t index, size_t elementsAmount){
     );
     return 0;
 }
+
+
+void arrayPrint(Array *a, void (*printElement)(void *element, size_t index)){
+    for(size_t index = 0; index < a->length; index++){
+        printElement((char *)a->array + index * a->elementSize, index);
+    }
+}
+
+int arrayRemoveE(Array *a, void (*deleteElement)(void *element)){
+    for(size_t index = 0; index < a->length; index++){
+        if(deleteElement){
+            deleteElement((char *)a->array + index * a->elementSize);
+        }
+    }
+    free(a->array);
+    free(a);
+    return 0;
+}
+
+int arrayClear(Array *a, void (*deleteElement)(void *element)){
+    for(size_t index = 0; index < a->length; index++){
+        if(deleteElement){
+            deleteElement((char *)a->array + index * a->elementSize);
+        }
+    }
+    a->length = 0;
+    return 0;
+}

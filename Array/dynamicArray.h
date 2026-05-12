@@ -36,4 +36,10 @@ int arrayShiftRight(Array *a, size_t steps, size_t index, size_t elementsAmount)
 
 int arrayShiftLeft(Array *a, size_t steps, size_t index, size_t elementsAmount);
 
+void arrayPrint(Array *a, void (*printElement)(void *element, size_t index));
+
+int arrayRemoveE(Array *a, void (*deleteElement)(void *element));
+
+int arrayClear(Array *a, void (*deleteElement)(void *element));
+
 #endif
